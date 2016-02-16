@@ -1,0 +1,10 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--Login Activity-->
+    <dimen name="padding_top_iv_logo">20dp</dimen>
+    <dimen name="padding_top_login_activity">15dp</dimen>
+    <dimen name="margin_top_login_activity">15dp</dimen>
+</resources>
