@@ -67,14 +67,6 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/register_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/register_button"
-                android:layout_marginTop="@dimen/margin_top_login_activity"
-                android:layout_below="@+id/ti_layout_password"/>
-
-            <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
@@ -82,7 +74,15 @@
                 android:text="@string/action_sign_in"
                 android:layout_marginTop="@dimen/margin_top_login_activity"
                 android:textStyle="bold"
-                android:layout_below="@+id/register_button"/>
+                android:layout_below="@+id/ti_layout_password"/>
+
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/register_button"
+                android:layout_marginTop="@dimen/margin_top_login_activity"
+                android:layout_below="@+id/email_sign_in_button"/>
 
         </RelativeLayout>
     </ScrollView>

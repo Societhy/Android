@@ -7,4 +7,9 @@
     <dimen name="padding_top_iv_logo">20dp</dimen>
     <dimen name="padding_top_login_activity">15dp</dimen>
     <dimen name="margin_top_login_activity">15dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!--Register Activity-->
+    <dimen name="padding_top_register_activity">25dp</dimen>
+
 </resources>

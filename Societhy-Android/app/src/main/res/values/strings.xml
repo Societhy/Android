@@ -16,4 +16,15 @@
 
     <!--Login Activity-->
     <string name="register_button">Register</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <!--Drawer Menu-->
+    <string name="margin_top_iv_drawer">30dp</string>
+
+   <!-- Register Activity-->
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_organisation_administration">OrganisationAdministrationActivity
+    </string>
 </resources>
