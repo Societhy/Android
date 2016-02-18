@@ -65,7 +65,7 @@ public class OrganisationProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_organisation_profile, container, false);
+        return inflater.inflate(R.layout.activity_organisation_profile, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
