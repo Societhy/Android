@@ -1,6 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.jordan.societhy_android.Fragments.OrganisationProfileFragment">
 
     <!--<include
@@ -8,12 +10,39 @@
         layout="@layout/app_bar_home">
 
     </include>-->
-    <android.support.v7.widget.Toolbar
+    <!--<android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        android:titleTextColor="@android:color/white"
         android:layout_height="wrap_content">
 
-    </android.support.v7.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>-->
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:background="@color/colorGreenToolBar">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:id="@+id/tv_organisation_name"
+            android:textSize="40sp"
+            tools:text="organisation"
+            android:layout_weight="0.6"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/iv_orga_picture"
@@ -23,10 +52,12 @@
         android:src="@drawable/logo" />
 
     <TextView
-        android:id="@+id/tv_organisation_name"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_orga_picture"
+        android:layout_toRightOf="@id/iv_orga_picture"
+        android:layout_below="@+id/toolbar"
+        android:paddingTop="@dimen/padding_top_login_activity"
         android:text="admin"
         android:textSize="40sp"/>
 

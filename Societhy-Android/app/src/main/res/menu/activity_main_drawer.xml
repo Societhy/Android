@@ -7,17 +7,17 @@
             android:icon="@drawable/logo"
             android:title="Dashboard" />
         <item
-            android:id="@+id/nav_modules"
+            android:id="@+id/nav_search_organisation"
             android:icon="@drawable/logo"
             android:title="Search Organization" />
         <item
-            android:id="@+id/nav_planning"
+            android:id="@+id/nav_profile"
             android:icon="@drawable/logo"
             android:title="Profile" />
         <item
-            android:id="@+id/nav_profile"
+            android:id="@+id/nav_administration"
             android:icon="@drawable/logo"
-            android:title=""
+            android:title="Administration"
             />
     </group>
 </menu>

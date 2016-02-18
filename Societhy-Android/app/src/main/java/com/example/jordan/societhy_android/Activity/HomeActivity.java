@@ -21,13 +21,15 @@ import android.widget.TextView;
 
 import com.example.jordan.societhy_android.Fragments.DashboardFragment;
 import com.example.jordan.societhy_android.Fragments.OrganisationProfileFragment;
+import com.example.jordan.societhy_android.Fragments.SearchOrganisationFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements
         DashboardFragment.OnFragmentInteractionListener,
-        OrganisationProfileFragment.OnFragmentInteractionListener {
+        OrganisationProfileFragment.OnFragmentInteractionListener,
+        SearchOrganisationFragment.OnFragmentInteractionListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -144,6 +146,7 @@ public class HomeActivity extends AppCompatActivity implements
     private void initViews() {
         //toolbar.setLogo(R.drawable.office_list);
         toolbarTitle.setText("DashBoard");
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
     }
 
@@ -192,8 +195,8 @@ public class HomeActivity extends AppCompatActivity implements
                     Log.v("DashBoard", "dashboard selected fragment");
                     fragmentClass = DashboardFragment.class;
                     break;
-                case R.id.nav_modules:
-                    fragmentClass = OrganisationProfileFragment.class;
+                case R.id.nav_search_organisation:
+                    fragmentClass = SearchOrganisationFragment.class;
                     break;
                 default:
                     fragmentClass = DashboardFragment.class;

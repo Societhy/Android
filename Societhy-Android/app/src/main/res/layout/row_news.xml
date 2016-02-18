@@ -17,6 +17,8 @@
         android:layout_toRightOf="@+id/iv_orga_picture"
         android:paddingLeft="@dimen/padding_row_orga"
         android:paddingTop="@dimen/padding_top_row_orga"
+        android:textColor="@android:color/black"
+        android:typeface="monospace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -35,6 +37,7 @@
         android:text="newsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnews"
         android:paddingLeft="@dimen/padding_row_orga"
         android:paddingRight="@dimen/padding_row_orga"
+        android:textColor="@android:color/black"
         android:layout_below="@+id/tv_name_orga"
         android:layout_toRightOf="@+id/iv_orga_picture"
         android:layout_toEndOf="@+id/iv_orga_picture" />
