@@ -1,10 +1,55 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jordan.societhy_android.Fragments.DashboardFragment">
+    tools:context="com.example.jordan.societhy_android.Fragments.DashboardFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <LinearLayout
+        android:id="@+id/selector_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/tv_news"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/dashboard_button_shape"
+            android:textSize="40sp"
+            android:textColor="@android:color/white"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_news_orga"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/tv_news_orga"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:background="@drawable/dashboard_button_shape"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="0.5"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_row_orga"
+        android:paddingLeft="@dimen/padding_row_orga"
+        android:layout_below="@+id/selector_layout">
+
+    </ListView>
+
+</RelativeLayout>

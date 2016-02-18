@@ -1,41 +1,41 @@
 package com.example.jordan.societhy_android.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
-import com.example.jordan.societhy_android.Activity.R;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class OrganisationAdministrationActivity extends AppCompatActivity {
+
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.tv_organisation_name)
+    TextView tvOrganisationName;
+    @Bind(R.id.fab)
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organisation_administration);
+        ButterKnife.bind(this);
+
+        initViews();
 
         Bundle extras = getIntent().getExtras();
         String userName;
 
         userName = extras.getString("name");
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView tvOrganizationName = (TextView) findViewById(R.id.tv_organisation_name);
-        tvOrganizationName.setText(userName);
+        tvOrganisationName.setText(userName);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
+    private void initViews() {
+        //toolbar.setLogo(R.drawable.office_list);
+    }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_orga_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cdprojekt"
+        />
+
+    <TextView
+        android:id="@+id/tv_name_orga"
+        android:text="CDProjekt"
+        android:layout_toRightOf="@+id/iv_orga_picture"
+        android:paddingLeft="@dimen/padding_row_orga"
+        android:paddingTop="@dimen/padding_top_row_orga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="17/02/2016"
+        android:paddingLeft="@dimen/padding_row_orga"
+        android:paddingTop="@dimen/padding_top_row_orga"
+        android:layout_toRightOf="@+id/tv_name_orga"/>
+    <TextView
+        android:id="@+id/tv_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="newsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnews"
+        android:paddingLeft="@dimen/padding_row_orga"
+        android:paddingRight="@dimen/padding_row_orga"
+        android:layout_below="@+id/tv_name_orga"
+        android:layout_toRightOf="@+id/iv_orga_picture"
+        android:layout_toEndOf="@+id/iv_orga_picture" />
+</RelativeLayout>

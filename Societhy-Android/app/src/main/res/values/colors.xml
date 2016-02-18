@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#3c9d70</color>
+    <color name="colorGreenToolBar">#70bf92</color>
+    <color name="colorGreenStatusBar">#4d8264</color>
+    <color name="colorGreenPager">#6aa582</color>
+    <color name="greyDashBoardButton">#adabab</color>
+    <color name="greyDashBoardButtonHighlight">#dddbdb</color>
+
 </resources>

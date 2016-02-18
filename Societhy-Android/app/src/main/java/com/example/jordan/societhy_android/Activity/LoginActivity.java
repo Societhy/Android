@@ -122,6 +122,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        setTitle(R.string.title_activity_login);
+
         setupControls();
  //TODO remove cette merde
         mLoginFormView = findViewById(R.id.login_form);
