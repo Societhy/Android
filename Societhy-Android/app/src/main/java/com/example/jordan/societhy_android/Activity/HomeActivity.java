@@ -19,15 +19,17 @@ import android.view.SubMenu;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.example.jordan.societhy_android.Fragments.DashboardFragment;
+import com.example.jordan.societhy_android.Fragments.DashBoardFragment;
 import com.example.jordan.societhy_android.Fragments.OrganisationProfileFragment;
+import com.example.jordan.societhy_android.Fragments.UserProfileFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements
-        DashboardFragment.OnFragmentInteractionListener,
-        OrganisationProfileFragment.OnFragmentInteractionListener {
+        DashBoardFragment.OnFragmentInteractionListener,
+        OrganisationProfileFragment.OnFragmentInteractionListener,
+        UserProfileFragment.OnFragmentInteractionListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -128,7 +130,7 @@ public class HomeActivity extends AppCompatActivity implements
 
         setupDrawerContent(navView);
 
-        Class FragmentClass = DashboardFragment.class;
+        Class FragmentClass = DashBoardFragment.class;
         Fragment fragment = null;
         try {
             fragment = (Fragment) FragmentClass.newInstance();
@@ -190,13 +192,17 @@ public class HomeActivity extends AppCompatActivity implements
             switch (menuItem.getItemId()) {
                 case R.id.nav_dashboard:
                     Log.v("DashBoard", "dashboard selected fragment");
-                    fragmentClass = DashboardFragment.class;
+                    fragmentClass = DashBoardFragment.class;
                     break;
                 case R.id.nav_modules:
                     fragmentClass = OrganisationProfileFragment.class;
                     break;
+                case R.id.nav_profile:
+                    Log.v("UserProfile", "UserProfile");
+                    fragmentClass = UserProfileFragment.class;
+                    break;
                 default:
-                    fragmentClass = DashboardFragment.class;
+                    fragmentClass = DashBoardFragment.class;
             }
             currentFragment = menuItem.getItemId();
 

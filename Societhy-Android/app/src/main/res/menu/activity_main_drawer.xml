@@ -11,13 +11,13 @@
             android:icon="@drawable/logo"
             android:title="Search Organization" />
         <item
-            android:id="@+id/nav_planning"
-            android:icon="@drawable/logo"
-            android:title="Profile" />
-        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/logo"
-            android:title=""
+            android:title="User Profile" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/logo"
+            android:title="About"
             />
     </group>
 </menu>

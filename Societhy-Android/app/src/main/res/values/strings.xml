@@ -21,7 +21,7 @@
     <!--Drawer Menu-->
     <string name="margin_top_iv_drawer">30dp</string>
 
-   <!-- Register Activity-->
+    <!-- Register Activity-->
 
     <!--DashBoard Fragment-->
     <string name="tv_news">News</string>

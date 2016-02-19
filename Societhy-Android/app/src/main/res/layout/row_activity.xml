@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/full_row"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="17/02/2016"
+        android:paddingLeft="@dimen/padding_row_orga"
+        android:paddingTop="@dimen/padding_top_row_orga"/>
+    <TextView
+        android:id="@+id/tv_activityContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ActivityActivityActivityActivityActivityActivityActivityActivityActivityActivityActivity"
+        android:paddingLeft="@dimen/padding_row_orga"
+        android:paddingRight="@dimen/padding_row_orga"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tv_date"
+        android:layout_toEndOf="@+id/tv_date" />
+</RelativeLayout>
