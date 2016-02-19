@@ -3,11 +3,12 @@ package com.example.jordan.societhy_android.Fragments;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.jordan.societhy_android.Activity.R;
@@ -29,15 +30,18 @@ import butterknife.ButterKnife;
  * create an instance of this fragment.
  */
 public class SearchOrganisationFragment extends Fragment {
-    @Bind(R.id.et_search)
-    EditText etSearch;
-    @Bind(R.id.lv_organisations)
-    ListView lvOrganisations;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    @Bind(R.id.lv_organisations)
+    ListView lvOrganisations;
+    @Bind(R.id.nav_view_filter)
+    NavigationView navViewFilter;
+    @Bind(R.id.drawer_layout_filter)
+    DrawerLayout drawerLayoutFilter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;

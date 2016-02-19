@@ -1,10 +1,12 @@
 package com.example.jordan.societhy_android.Activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,12 +18,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.jordan.societhy_android.Fragments.DashboardFragment;
 import com.example.jordan.societhy_android.Fragments.OrganisationProfileFragment;
 import com.example.jordan.societhy_android.Fragments.SearchOrganisationFragment;
+import com.example.jordan.societhy_android.Utils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,17 +36,18 @@ public class HomeActivity extends AppCompatActivity implements
         OrganisationProfileFragment.OnFragmentInteractionListener,
         SearchOrganisationFragment.OnFragmentInteractionListener {
 
+    @Bind(R.id.toolbar_title)
+    TextView toolbarTitle;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.app_bar_layout)
+    AppBarLayout appBarLayout;
     @Bind(R.id.fragment_layout)
     FrameLayout fragmentLayout;
     @Bind(R.id.nav_view)
     NavigationView navView;
     @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
-    @Bind(R.id.toolbar_title)
-    TextView toolbarTitle;
-
     private int currentFragment;
 
     @Override
@@ -55,6 +61,8 @@ public class HomeActivity extends AppCompatActivity implements
 
         Menu m = navView.getMenu();
         SubMenu topChannelMenu = m.addSubMenu("Organisations");
+
+
         // TODO REMOVE CETTE MERDE
         topChannelMenu.add("Foo").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -148,6 +156,27 @@ public class HomeActivity extends AppCompatActivity implements
         toolbarTitle.setText("DashBoard");
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                Utils.hideKeyboard(HomeActivity.this);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
     }
 
     @Override
@@ -214,7 +243,7 @@ public class HomeActivity extends AppCompatActivity implements
             fragmentManager.beginTransaction().replace(R.id.fragment_layout, fragment).commit();
 
             // Highlight the selected item, update the title, and close the drawer
-            menuItem.setChecked(true);/*
+           /* menuItem.setChecked(true);
             setTitle(menuItem.getTitle());*/
             toolbarTitle.setText(menuItem.getTitle());
             drawerLayout.closeDrawers();

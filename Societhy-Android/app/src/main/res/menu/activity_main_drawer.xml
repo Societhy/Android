@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group
-        android:checkableBehavior="single">
+    <group>
         <item
             android:id="@+id/nav_dashboard"
-            android:icon="@drawable/logo"
+            android:icon="@android:drawable/presence_invisible"
             android:title="Dashboard" />
         <item
             android:id="@+id/nav_search_organisation"
-            android:icon="@drawable/logo"
+            android:icon="@android:drawable/presence_invisible"
             android:title="Search Organization" />
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/logo"
+            android:icon="@android:drawable/presence_invisible"
             android:title="Profile" />
         <item
             android:id="@+id/nav_administration"
-            android:icon="@drawable/logo"
+            android:icon="@android:drawable/presence_invisible"
             android:title="Administration"
+            />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@android:drawable/presence_invisible"
+            android:title="Logout"
             />
     </group>
 </menu>

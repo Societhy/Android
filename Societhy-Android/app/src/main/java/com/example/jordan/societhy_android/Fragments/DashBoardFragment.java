@@ -5,10 +5,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,13 +34,18 @@ import butterknife.ButterKnife;
  * create an instance of this fragment.
  */
 public class DashboardFragment extends Fragment {
+
+
+    @Bind(R.id.et_search)
+    EditText etSearch;
     @Bind(R.id.tv_news)
     TextView tvNews;
     @Bind(R.id.tv_news_orga)
     TextView tvNewsOrga;
+    @Bind(R.id.selector_layout)
+    LinearLayout selectorLayout;
     @Bind(R.id.lv_news)
     ListView lvNews;
-
     private View view;
     private ListView notificationList;
     private TextView logTime;
@@ -85,6 +93,7 @@ public class DashboardFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+
     public List<NewsModel> newsGenerator(int pager) {
         List<NewsModel> list = new ArrayList<NewsModel>();
         if (pager == NEWS_PAGE_SELECTED) {
@@ -108,6 +117,7 @@ public class DashboardFragment extends Fragment {
         }
         return list;
     }
+
     private void initViews() {
         tvNews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,21 +132,20 @@ public class DashboardFragment extends Fragment {
             }
         });
         List<NewsModel> list = newsGenerator(NEWS_PAGE_SELECTED);
-        Log.v("initViews", "listes : " + list.toString());
         adapter = new NewsListAdapter(getContext(), R.layout.row_news, list, this.getActivity());
-        Log.v("initViews", "afterAdapter");
         lvNews.setAdapter(adapter);
+
     }
 
     private void updateViews(int pager) {
         if (pager == NEWS_PAGE_SELECTED) {
-            tvNews.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButtonHighlight));
-            tvNewsOrga.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButton));
+            tvNews.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButton));
+            tvNewsOrga.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButtonHighlight));
             adapter = new NewsListAdapter(getContext(), R.layout.row_news, newsGenerator(NEWS_PAGE_SELECTED), this.getActivity());
             lvNews.setAdapter(adapter);
         } else {
-            tvNewsOrga.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButtonHighlight));
-            tvNews.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButton));
+            tvNewsOrga.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButton));
+            tvNews.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButtonHighlight));
             adapter = new NewsListAdapter(getContext(), R.layout.row_news, newsGenerator(NEWS_ORGA_PAGE_SELECTED), this.getActivity());
             lvNews.setAdapter(adapter);
         }
