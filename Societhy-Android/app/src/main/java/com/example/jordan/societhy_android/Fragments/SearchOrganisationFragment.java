@@ -7,18 +7,33 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import com.example.jordan.societhy_android.Activity.R;
+import com.example.jordan.societhy_android.Adapter.OrganisationListAdapter;
+import com.example.jordan.societhy_android.Models.Organisation;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OrganisationProfileFragment.OnFragmentInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link OrganisationProfileFragment#newInstance} factory method to
+ * Use the {@link SearchOrganisationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OrganisationProfileFragment extends Fragment {
+public class SearchOrganisationFragment extends Fragment {
+    @Bind(R.id.et_search)
+    EditText etSearch;
+    @Bind(R.id.lv_organisations)
+    ListView lvOrganisations;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,6 +44,7 @@ public class OrganisationProfileFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private OrganisationListAdapter adapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -36,11 +52,11 @@ public class OrganisationProfileFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment OrganisationProfileFragment.
+     * @return A new instance of fragment SearchOrganisationFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static OrganisationProfileFragment newInstance(String param1, String param2) {
-        OrganisationProfileFragment fragment = new OrganisationProfileFragment();
+    public static SearchOrganisationFragment newInstance(String param1, String param2) {
+        SearchOrganisationFragment fragment = new SearchOrganisationFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -48,7 +64,7 @@ public class OrganisationProfileFragment extends Fragment {
         return fragment;
     }
 
-    public OrganisationProfileFragment() {
+    public SearchOrganisationFragment() {
         // Required empty public constructor
     }
 
@@ -65,7 +81,10 @@ public class OrganisationProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_organisation_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_search_organisation, container, false);
+        ButterKnife.bind(this, view);
+        initViews();
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -73,6 +92,17 @@ public class OrganisationProfileFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    private void initViews() {
+        List<Organisation> organisations = new ArrayList<Organisation>();
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+
+        adapter = new OrganisationListAdapter(getContext(), R.layout.row_news, organisations, this.getActivity());
+        lvOrganisations.setAdapter(adapter);
     }
 
     @Override
@@ -90,6 +120,12 @@ public class OrganisationProfileFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     /**

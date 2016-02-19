@@ -21,15 +21,25 @@ import android.widget.TextView;
 
 import com.example.jordan.societhy_android.Fragments.DashBoardFragment;
 import com.example.jordan.societhy_android.Fragments.OrganisationProfileFragment;
+<<<<<<< HEAD
 import com.example.jordan.societhy_android.Fragments.UserProfileFragment;
+=======
+import com.example.jordan.societhy_android.Fragments.SearchOrganisationFragment;
+>>>>>>> 71d8a7eeddf1c0cbc741560bc791a7f7a8cf7e38
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements
+<<<<<<< HEAD
         DashBoardFragment.OnFragmentInteractionListener,
         OrganisationProfileFragment.OnFragmentInteractionListener,
         UserProfileFragment.OnFragmentInteractionListener {
+=======
+        DashboardFragment.OnFragmentInteractionListener,
+        OrganisationProfileFragment.OnFragmentInteractionListener,
+        SearchOrganisationFragment.OnFragmentInteractionListener {
+>>>>>>> 71d8a7eeddf1c0cbc741560bc791a7f7a8cf7e38
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -146,6 +156,7 @@ public class HomeActivity extends AppCompatActivity implements
     private void initViews() {
         //toolbar.setLogo(R.drawable.office_list);
         toolbarTitle.setText("DashBoard");
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
     }
 
@@ -194,8 +205,8 @@ public class HomeActivity extends AppCompatActivity implements
                     Log.v("DashBoard", "dashboard selected fragment");
                     fragmentClass = DashBoardFragment.class;
                     break;
-                case R.id.nav_modules:
-                    fragmentClass = OrganisationProfileFragment.class;
+                case R.id.nav_search_organisation:
+                    fragmentClass = SearchOrganisationFragment.class;
                     break;
                 case R.id.nav_profile:
                     Log.v("UserProfile", "UserProfile");

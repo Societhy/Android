@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.jordan.societhy_android.Fragments.OrganisationProfileFragment">
 
     <!--<include
         android:id="@+id/toolbar"
@@ -28,19 +29,16 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/padding_back_btn"
-            android:paddingLeft="@dimen/padding_back_btn"
-            android:paddingBottom="@dimen/padding_back_btn"
             android:src="@drawable/back"/>
 
         <TextView
             android:id="@+id/tv_organisation_name"
             android:textSize="40sp"
-            android:text="organisation"
+            tools:text="organisation"
             android:layout_weight="0.6"
             android:textColor="@android:color/white"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             />
 
@@ -62,4 +60,5 @@
         android:paddingTop="@dimen/padding_top_login_activity"
         android:text="admin"
         android:textSize="40sp"/>
+
 </RelativeLayout>

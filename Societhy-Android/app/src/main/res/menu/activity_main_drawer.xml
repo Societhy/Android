@@ -7,7 +7,7 @@
             android:icon="@drawable/logo"
             android:title="Dashboard" />
         <item
-            android:id="@+id/nav_modules"
+            android:id="@+id/nav_search_organisation"
             android:icon="@drawable/logo"
             android:title="Search Organization" />
         <item
@@ -15,9 +15,15 @@
             android:icon="@drawable/logo"
             android:title="User Profile" />
         <item
+<<<<<<< HEAD
             android:id="@+id/nav_about"
             android:icon="@drawable/logo"
             android:title="About"
+=======
+            android:id="@+id/nav_administration"
+            android:icon="@drawable/logo"
+            android:title="Administration"
+>>>>>>> 71d8a7eeddf1c0cbc741560bc791a7f7a8cf7e38
             />
     </group>
 </menu>
