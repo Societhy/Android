@@ -23,7 +23,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.example.jordan.societhy_android.Fragments.DashboardFragment;
+import com.example.jordan.societhy_android.Fragments.DashBoardFragment;
 import com.example.jordan.societhy_android.Fragments.OrganisationProfileFragment;
 import com.example.jordan.societhy_android.Fragments.UserProfileFragment;
 import com.example.jordan.societhy_android.Fragments.SearchOrganisationFragment;
@@ -33,7 +33,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements
-        DashboardFragment.OnFragmentInteractionListener,
+        DashBoardFragment.OnFragmentInteractionListener,
         OrganisationProfileFragment.OnFragmentInteractionListener,
         SearchOrganisationFragment.OnFragmentInteractionListener,
         UserProfileFragment.OnFragmentInteractionListener {
@@ -140,7 +140,7 @@ public class HomeActivity extends AppCompatActivity implements
 
         setupDrawerContent(navView);
 
-        Class FragmentClass = DashboardFragment.class;
+        Class FragmentClass = DashBoardFragment.class;
         Fragment fragment = null;
         try {
             fragment = (Fragment) FragmentClass.newInstance();
@@ -224,7 +224,7 @@ public class HomeActivity extends AppCompatActivity implements
             switch (menuItem.getItemId()) {
                 case R.id.nav_dashboard:
                     Log.v("DashBoard", "dashboard selected fragment");
-                    fragmentClass = DashboardFragment.class;
+                    fragmentClass = DashBoardFragment.class;
                     break;
                 case R.id.nav_search_organisation:
                     fragmentClass = SearchOrganisationFragment.class;
@@ -234,7 +234,7 @@ public class HomeActivity extends AppCompatActivity implements
                     fragmentClass = UserProfileFragment.class;
                     break;
                 default:
-                    fragmentClass = DashboardFragment.class;
+                    fragmentClass = DashBoardFragment.class;
             }
             currentFragment = menuItem.getItemId();
 
