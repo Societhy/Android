@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/iv_orga_picture"
+        android:id="@+id/iv_user_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/cdprojekt"
@@ -15,14 +15,13 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:id="@+id/tv_name_orga"
+        android:id="@+id/tv_user_name"
         android:text="CDProjekt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/padding_left_orga_user"
-        android:layout_below="@+id/iv_orga_picture"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/iv_user_picture"
+        android:layout_alignLeft="@+id/iv_user_picture"
+        android:layout_alignStart="@+id/iv_user_picture" />
 
 
 </RelativeLayout>

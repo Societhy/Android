@@ -14,6 +14,10 @@ public class UserModel {
     public UserModel() {
     }
 
+    public UserModel(String login) {
+        Login = login;
+    }
+
     public UserModel(String login, String firstName, String lastName, String bithDate, String genre, String presentation) {
         Login = login;
         FirstName = firstName;

@@ -5,7 +5,7 @@
 
 
     <ImageView
-        android:id="@+id/iv_user_profile"
+        android:id="@+id/iv_orga_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -13,10 +13,10 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="1dp"
         android:src="@drawable/cdprojekt"
-    />
+        />
 
     <TextView
-        android:id="@+id/tv_user_profile"
+        android:id="@+id/tv_orga_profile"
         android:layout_width="222dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -37,7 +37,7 @@
         android:layout_alignEnd="@+id/tv_user_profile" />
 
     <ListView
-        android:id="@+id/lv_user_profile"
+        android:id="@+id/lv_orga_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -48,7 +48,7 @@
     </ListView>
 
     <ScrollView
-        android:id="@+id/sv_user_orga"
+        android:id="@+id/sv_orga_user"
         android:layout_width="40dp"
         android:layout_height="100dp"
         android:orientation="horizontal"

@@ -9,13 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.jordan.societhy_android.Activity.R;
 import com.example.jordan.societhy_android.Adapter.ActivityListAdapter;
+import com.example.jordan.societhy_android.Adapter.UserOrganisationListAdapter;
 import com.example.jordan.societhy_android.Models.UserActivityModel;
+import com.example.jordan.societhy_android.Models.OrganisationModel;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -36,10 +40,13 @@ public class UserProfileFragment extends Fragment {
     ListView lvUserProfile;
     @Bind(R.id.sv_user_orga)
     ScrollView svUserOrga;
+    @Bind(R.id.tv_Description)
+    TextView tvDescription;
 
     private View view;
     private ActivityListAdapter adapter;
-
+    private UserOrganisationListAdapter orgaAdapter;
+    private LinearLayout tmp;
     private OnFragmentInteractionListener mListener;
 
 
@@ -68,16 +75,30 @@ public class UserProfileFragment extends Fragment {
     }
 
     private void initViews() {
-        tvUserProfile.setText("Aurélien Giudici, 14/04/1995 12 passage carnot J'aime les pattates et les pommes");
+        tvUserProfile.setText("Aurélien Giudici, 14/04/1995\nMaitre des Penis Sacrée sisi");
         tvUserProfile.setTextSize(14);
-        tvUserProfile.setTextColor(Color.BLACK);
+        tvUserProfile.setTextColor(Color.GRAY);
+        tvDescription.setText("Einstein présente un parcours scolaire relativement atypique par rapport aux éminents scientifiques qui furent plus tard ses contemporains. Très tôt, le jeune homme s'insurge du pouvoir arbitraire exercé par les enseignants, et est donc souvent dépeint comme un mauvais élément très étourdi par ces derniers. Il éprouve jusque tard dans son enfance des difficultés pour s'exprimer");
+        tvDescription.setTextSize(10);
+        tvUserProfile.setTextColor(Color.GRAY);
         List<UserActivityModel> list = new ArrayList<UserActivityModel>();
         list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
         list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
         list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
 
+
+        List<OrganisationModel> svOrga = new ArrayList<OrganisationModel>();
+        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
+
+
+        orgaAdapter = new UserOrganisationListAdapter(getContext(), R.layout.row_user_organisation, svOrga, this.getActivity());
         adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list, this.getActivity());
         lvUserProfile.setAdapter(adapter);
+        //tmp.addView(orgaAdapter.getView(0, null, null));
+
+        svUserOrga.addView(orgaAdapter.getView(1, null, null));
     }
 
     // TODO: Rename method, update argument and hook method into UI event

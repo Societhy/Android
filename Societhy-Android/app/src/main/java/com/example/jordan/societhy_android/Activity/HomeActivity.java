@@ -19,28 +19,19 @@ import android.view.SubMenu;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.example.jordan.societhy_android.Fragments.DashBoardFragment;
+import com.example.jordan.societhy_android.Fragments.DashboardFragment;
 import com.example.jordan.societhy_android.Fragments.OrganisationProfileFragment;
-<<<<<<< HEAD
 import com.example.jordan.societhy_android.Fragments.UserProfileFragment;
-=======
 import com.example.jordan.societhy_android.Fragments.SearchOrganisationFragment;
->>>>>>> 71d8a7eeddf1c0cbc741560bc791a7f7a8cf7e38
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements
-<<<<<<< HEAD
-        DashBoardFragment.OnFragmentInteractionListener,
-        OrganisationProfileFragment.OnFragmentInteractionListener,
-        UserProfileFragment.OnFragmentInteractionListener {
-=======
         DashboardFragment.OnFragmentInteractionListener,
         OrganisationProfileFragment.OnFragmentInteractionListener,
-        SearchOrganisationFragment.OnFragmentInteractionListener {
->>>>>>> 71d8a7eeddf1c0cbc741560bc791a7f7a8cf7e38
-
+        SearchOrganisationFragment.OnFragmentInteractionListener,
+        UserProfileFragment.OnFragmentInteractionListener {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.fragment_layout)
@@ -140,7 +131,7 @@ public class HomeActivity extends AppCompatActivity implements
 
         setupDrawerContent(navView);
 
-        Class FragmentClass = DashBoardFragment.class;
+        Class FragmentClass = DashboardFragment.class;
         Fragment fragment = null;
         try {
             fragment = (Fragment) FragmentClass.newInstance();
@@ -203,7 +194,7 @@ public class HomeActivity extends AppCompatActivity implements
             switch (menuItem.getItemId()) {
                 case R.id.nav_dashboard:
                     Log.v("DashBoard", "dashboard selected fragment");
-                    fragmentClass = DashBoardFragment.class;
+                    fragmentClass = DashboardFragment.class;
                     break;
                 case R.id.nav_search_organisation:
                     fragmentClass = SearchOrganisationFragment.class;
@@ -213,7 +204,7 @@ public class HomeActivity extends AppCompatActivity implements
                     fragmentClass = UserProfileFragment.class;
                     break;
                 default:
-                    fragmentClass = DashBoardFragment.class;
+                    fragmentClass = DashboardFragment.class;
             }
             currentFragment = menuItem.getItemId();
 

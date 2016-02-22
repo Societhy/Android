@@ -27,10 +27,10 @@ import butterknife.ButterKnife;
  * Activities that contain this fragment must implement the
  * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link DashBoardFragment#newInstance} factory method to
+ * Use the {@link DashboardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DashBoardFragment extends Fragment {
+public class DashboardFragment extends Fragment {
     @Bind(R.id.tv_news)
     TextView tvNews;
     @Bind(R.id.tv_news_orga)
@@ -52,14 +52,14 @@ public class DashBoardFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment DashBoardFragment.
+     * @return A new instance of fragment DashboardFragment.
      */
-    public static DashBoardFragment newInstance() {
-        DashBoardFragment fragment = new DashBoardFragment();
+    public static DashboardFragment newInstance() {
+        DashboardFragment fragment = new DashboardFragment();
         return fragment;
     }
 
-    public DashBoardFragment() {
+    public DashboardFragment() {
         // Required empty public constructor
     }
 

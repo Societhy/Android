@@ -9,8 +9,16 @@
     <dimen name="margin_top_login_activity">50dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <!--User Organisation row-->
+    <dimen name="padding_left_orga_user">10dp</dimen>
+
     <!--Register Activity-->
     <dimen name="padding_top_register_activity">25dp</dimen>
+
+    <!--User Profile Activity-->
+    <dimen name="padding_top_lv_user_profile">20dp</dimen>
+    <dimen name="padding_bot_lv_user_profile">120dp</dimen>
+    <dimen name="text_description_size">80dp</dimen>
 
     <!--Home Activity-->
     <dimen name="text_size_toolbar_title">30sp</dimen>
