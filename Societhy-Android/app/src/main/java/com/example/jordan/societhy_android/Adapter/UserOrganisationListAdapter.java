@@ -22,7 +22,6 @@ public class UserOrganisationListAdapter extends ArrayAdapter<OrganisationModel>
     private static List<OrganisationModel> objs;
     private Context context;
     private Activity activity;
-
     public UserOrganisationListAdapter(Context context, int layout, List<OrganisationModel> objects, Activity activity) {
         super(context, layout, objects);
         this.context = context;

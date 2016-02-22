@@ -2,13 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.jordan.societhy_android.Fragments.DashboardFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:focusableInTouchMode="true">
+
+    <EditText
+        android:id="@+id/et_search"
+        android:hint="Rechercher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="20"
+        android:singleLine="true"
+        android:imeOptions="actionDone"/>
 
     <LinearLayout
         android:id="@+id/selector_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="1"
+        android:layout_below="@id/et_search"
         android:orientation="horizontal">
 
         <TextView

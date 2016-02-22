@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group
-        android:checkableBehavior="single">
+    <group>
         <item
             android:id="@+id/nav_dashboard"
-            android:icon="@drawable/logo"
+            android:icon="@android:drawable/presence_invisible"
             android:title="Dashboard" />
         <item
             android:id="@+id/nav_search_organisation"
-            android:icon="@drawable/logo"
+            android:icon="@android:drawable/presence_invisible"
             android:title="Search Organization" />
         <item
             android:id="@+id/nav_profile"
@@ -18,5 +17,16 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/logo"
             android:title="About" />
+        <item
+            android:id="@+id/nav_administration"
+            android:icon="@android:drawable/presence_invisible"
+            android:title="Administration"
+            />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@android:drawable/presence_invisible"
+            android:title="Logout"
+            />
+>>>>>>> 580cfca5515c04bf5e0c00aa097e46dc6e7e9b33
     </group>
 </menu>

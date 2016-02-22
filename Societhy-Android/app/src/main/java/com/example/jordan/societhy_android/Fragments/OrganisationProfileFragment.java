@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import com.example.jordan.societhy_android.Activity.R;
 import com.example.jordan.societhy_android.Adapter.ActivityListAdapter;
 import com.example.jordan.societhy_android.Adapter.NewsListAdapter;
+import com.example.jordan.societhy_android.Adapter.OrganisationUserListAdapter;
 import com.example.jordan.societhy_android.Adapter.UserOrganisationListAdapter;
 import com.example.jordan.societhy_android.Models.OrganisationModel;
 import com.example.jordan.societhy_android.Models.NewsModel;
@@ -49,7 +50,7 @@ public class OrganisationProfileFragment extends Fragment {
 
     private View view;
     private NewsListAdapter newsAdapter;
-    private UserOrganisationListAdapter userAdapter;
+    private OrganisationUserListAdapter userAdapter;
     private OnFragmentInteractionListener mListener;
 
     public static OrganisationProfileFragment newInstance(String param1, String param2) {
@@ -95,7 +96,7 @@ public class OrganisationProfileFragment extends Fragment {
         svOrga.add(new UserModel("Tetraa"));
 
 
-        userAdapter = new UserOrganisationListAdapter(getContext(), R.layout.row_organisation_user, svOrga, this.getActivity());
+        userAdapter = new OrganisationUserListAdapter(getContext(), R.layout.row_organisation_user, svOrga, this.getActivity());
         newsAdapter = new NewsListAdapter(getContext(), R.layout.row_news, list, this.getActivity());
         lvOrgaProfile.setAdapter(newsAdapter);
         //tmp.addView(orgaAdapter.getView(0, null, null));
