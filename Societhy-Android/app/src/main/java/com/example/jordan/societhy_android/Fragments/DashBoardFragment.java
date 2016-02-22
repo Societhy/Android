@@ -30,10 +30,10 @@ import butterknife.ButterKnife;
  * Activities that contain this fragment must implement the
  * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link DashboardFragment#newInstance} factory method to
+ * Use the {@link DashBoardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DashboardFragment extends Fragment {
+public class DashBoardFragment extends Fragment {
 
 
     @Bind(R.id.et_search)
@@ -62,12 +62,12 @@ public class DashboardFragment extends Fragment {
      *
      * @return A new instance of fragment DashboardFragment.
      */
-    public static DashboardFragment newInstance() {
-        DashboardFragment fragment = new DashboardFragment();
+    public static DashBoardFragment newInstance() {
+        DashBoardFragment fragment = new DashBoardFragment();
         return fragment;
     }
 
-    public DashboardFragment() {
+    public DashBoardFragment() {
         // Required empty public constructor
     }
 
