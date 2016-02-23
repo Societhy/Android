@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.jordan.societhy_android.Activity.R;
-import com.example.jordan.societhy_android.Models.OrganisationModel;
 import com.example.jordan.societhy_android.Models.UserModel;
 
 import java.util.List;
@@ -40,7 +39,7 @@ public class OrganisationUserListAdapter extends ArrayAdapter<UserModel> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         final UserModel current = objs.get(position);
         if (convertView == null && mInflater != null) {
-            convertView = mInflater.inflate(R.layout.row_organisation_user, parent, false);
+            convertView = mInflater.inflate(R.layout.row_user_organisation, parent, false);
         }
         TextView tvDate = (TextView) convertView.findViewById(R.id.tv_user_login);
         tvDate.setText(current.getLogin());

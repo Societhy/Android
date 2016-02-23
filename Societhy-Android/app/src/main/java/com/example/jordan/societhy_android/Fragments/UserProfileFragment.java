@@ -5,24 +5,26 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.jordan.societhy_android.Activity.R;
 import com.example.jordan.societhy_android.Adapter.ActivityListAdapter;
+import com.example.jordan.societhy_android.Adapter.RecyclerViewAdapter;
 import com.example.jordan.societhy_android.Adapter.UserOrganisationListAdapter;
-import com.example.jordan.societhy_android.Models.UserActivityModel;
 import com.example.jordan.societhy_android.Models.OrganisationModel;
+import com.example.jordan.societhy_android.Models.UserActivityModel;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,14 +40,14 @@ public class UserProfileFragment extends Fragment {
     TextView tvUserProfile;
     @Bind(R.id.lv_user_profile)
     ListView lvUserProfile;
-    @Bind(R.id.sv_user_orga)
-    ScrollView svUserOrga;
     @Bind(R.id.tv_Description)
     TextView tvDescription;
+    @Bind(R.id.rv_user_organisation)
+    RecyclerView rvUserOrganisation;
 
     private View view;
     private ActivityListAdapter adapter;
-    private UserOrganisationListAdapter orgaAdapter;
+    private RecyclerViewAdapter orgaAdapter;
     private LinearLayout tmp;
     private OnFragmentInteractionListener mListener;
 
@@ -85,20 +87,47 @@ public class UserProfileFragment extends Fragment {
         list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
         list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
         list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
+        list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
+
 
 
         List<OrganisationModel> svOrga = new ArrayList<OrganisationModel>();
+
         svOrga.add(new OrganisationModel("Java", "12/03/1994"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));svOrga.add(new OrganisationModel("Java", "12/03/1994"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));svOrga.add(new OrganisationModel("Java", "12/03/1994"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));svOrga.add(new OrganisationModel("Java", "12/03/1994"));
         svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
         svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
 
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
 
-        orgaAdapter = new UserOrganisationListAdapter(getContext(), R.layout.row_user_organisation, svOrga, this.getActivity());
+        rvUserOrganisation.setLayoutManager(layoutManager);
+
+        orgaAdapter = new RecyclerViewAdapter(svOrga);
+        //orgaAdapter = new UserOrganisationListAdapter(getContext(), R.layout.row_user_organisation, svOrga, this.getActivity());
         adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list, this.getActivity());
+
         lvUserProfile.setAdapter(adapter);
+        rvUserOrganisation.setAdapter(orgaAdapter);
+        rvUserOrganisation.setItemAnimator(new DefaultItemAnimator());
         //tmp.addView(orgaAdapter.getView(0, null, null));
 
-        svUserOrga.addView(orgaAdapter.getView(1, null, null));
+        //svUserOrga.addView(orgaAdapter.getView(1, null, null));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -124,6 +153,12 @@ public class UserProfileFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     /**
