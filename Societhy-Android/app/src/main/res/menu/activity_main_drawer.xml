@@ -27,6 +27,5 @@
             android:icon="@android:drawable/presence_invisible"
             android:title="Logout"
             />
->>>>>>> 580cfca5515c04bf5e0c00aa097e46dc6e7e9b33
     </group>
 </menu>

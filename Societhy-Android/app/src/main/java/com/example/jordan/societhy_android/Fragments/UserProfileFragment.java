@@ -48,7 +48,7 @@ public class UserProfileFragment extends Fragment {
     private UserOrganisationListAdapter orgaAdapter;
     private LinearLayout tmp;
     private OnFragmentInteractionListener mListener;
-
+    private LinearLayout li;
 
     public static UserProfileFragment newInstance(String param1, String param2) {
         UserProfileFragment fragment = new UserProfileFragment();
@@ -91,20 +91,18 @@ public class UserProfileFragment extends Fragment {
         svOrga.add(new OrganisationModel("Java", "12/03/1994"));
         svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
         svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
-
-
         orgaAdapter = new UserOrganisationListAdapter(getContext(), R.layout.row_user_organisation, svOrga, this.getActivity());
         adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list, this.getActivity());
         lvUserProfile.setAdapter(adapter);
-        //tmp.addView(orgaAdapter.getView(0, null, null));
 
-        svUserOrga.addView(orgaAdapter.getView(1, null, null));
+        svUserOrga.addView(li);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
+
         }
     }
 
