@@ -36,26 +36,26 @@
         android:layout_alignRight="@+id/tv_user_profile"
         android:layout_alignEnd="@+id/tv_user_profile" />
 
-    <ListView
-        android:id="@+id/lv_user_profile"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/padding_top_lv_user_profile"
-        android:layout_marginBottom="@dimen/padding_bot_lv_user_profile"
-        android:layout_below="@+id/tv_Description">
-    </ListView>
+        android:layout_below="@+id/tv_Description"
+        android:orientation="vertical"
+        android:weightSum="1">
 
-    <ScrollView
-        android:id="@+id/sv_user_orga"
-        android:layout_width="40dp"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
-    </ScrollView>
+        <ListView
+            android:id="@+id/lv_user_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_top_lv_user_profile"
+            android:layout_weight="0.15">
+        </ListView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_user_organisation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.85">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 </RelativeLayout>
