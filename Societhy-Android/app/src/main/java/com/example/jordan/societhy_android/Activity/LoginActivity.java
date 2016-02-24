@@ -79,18 +79,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     AutoCompleteTextView tvLogin;
     @Bind(R.id.ti_layout_login)
     TextInputLayout tiLayoutLogin;
-    @Bind(R.id.tv_password)
-    EditText tvPassword;
+    @Bind(R.id.et_password)
+    EditText etPassword;
     @Bind(R.id.ti_layout_password)
     TextInputLayout tiLayoutPassword;
+    @Bind(R.id.sign_in_button)
+    Button signInButton;
     @Bind(R.id.register_button)
     Button registerButton;
     @Bind(R.id.email_login_form)
     RelativeLayout emailLoginForm;
     @Bind(R.id.login_form)
     ScrollView loginForm;
-    @Bind(R.id.sign_in_button)
-    Button signInButton;
 
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -101,34 +101,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private String password;
     private Context context;
 
-    // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
+        // Set up the login form.
         populateAutoComplete();
 
         context = this.getBaseContext();
 
-        initViews();
+        setTitle(R.string.title_activity_login);
         initMembers();
+
         setupControls();
     }
 
-    private void initViews() {
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        mPasswordView = (EditText) findViewById(R.id.password);
-        setTitle(R.string.title_activity_login);
-    }
-
     private void initMembers() {
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        etPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
@@ -176,7 +166,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return true;
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(tvLogin, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
@@ -215,31 +205,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+        tvLogin.setError(null);
+        etPassword.setError(null);
 
         // Store values at the time of the login attempt.
-        login = mEmailView.getText().toString();
-        password = mPasswordView.getText().toString();
+        login = tvLogin.getText().toString();
+        password = etPassword.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
+            etPassword.setError(getString(R.string.error_invalid_password));
+            focusView = etPassword;
             cancel = true;
         }
 
         // Check for a valid login address.
         if (TextUtils.isEmpty(login)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+            tvLogin.setError(getString(R.string.error_field_required));
+            focusView = tvLogin;
             cancel = true;
         } else if (!isEmailValid(login)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+            tvLogin.setError(getString(R.string.error_invalid_email));
+            focusView = tvLogin;
             cancel = true;
         }
 
@@ -307,28 +297,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+            loginForm.setVisibility(show ? View.GONE : View.VISIBLE);
+            loginForm.animate().setDuration(shortAnimTime).alpha(
                     show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                    loginForm.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
             });
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
+            loginProgress.setVisibility(show ? View.VISIBLE : View.GONE);
+            loginProgress.animate().setDuration(shortAnimTime).alpha(
                     show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                    loginProgress.setVisibility(show ? View.VISIBLE : View.GONE);
                 }
             });
         } else {
             // The ViewPropertyAnimator APIs are not available, so simply show
             // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            loginProgress.setVisibility(show ? View.VISIBLE : View.GONE);
+            loginForm.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
 
@@ -383,7 +373,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+        tvLogin.setAdapter(adapter);
     }
 
     /**
@@ -431,8 +421,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             if (success) {
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                etPassword.setError(getString(R.string.error_incorrect_password));
+                etPassword.requestFocus();
             }
         }
 
