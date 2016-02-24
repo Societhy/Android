@@ -4,9 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -19,6 +21,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,13 +35,22 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.jordan.societhy_android.APIRequest.IAPIRequest;
+import com.example.jordan.societhy_android.Constants;
+import com.example.jordan.societhy_android.Models.TokenModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -63,32 +75,35 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     ProgressBar loginProgress;
     @Bind(R.id.iv_societhy)
     ImageView ivSociethy;
-    @Bind(R.id.email)
-    AutoCompleteTextView email;
-    @Bind(R.id.ti_layout_email)
-    TextInputLayout tiLayoutEmail;
-    @Bind(R.id.password)
-    EditText password;
+    @Bind(R.id.tv_login)
+    AutoCompleteTextView tvLogin;
+    @Bind(R.id.ti_layout_login)
+    TextInputLayout tiLayoutLogin;
+    @Bind(R.id.tv_password)
+    EditText tvPassword;
     @Bind(R.id.ti_layout_password)
     TextInputLayout tiLayoutPassword;
     @Bind(R.id.register_button)
     Button registerButton;
-    @Bind(R.id.email_sign_in_button)
-    Button emailSignInButton;
     @Bind(R.id.email_login_form)
     RelativeLayout emailLoginForm;
     @Bind(R.id.login_form)
     ScrollView loginForm;
+    @Bind(R.id.sign_in_button)
+    Button signInButton;
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
 
+    private String login;
+    private String password;
+    private Context context;
+
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
 
 
     @Override
@@ -96,11 +111,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+
         populateAutoComplete();
 
+        context = this.getBaseContext();
+
+        initViews();
+        initMembers();
+        setupControls();
+    }
+
+    private void initViews() {
+        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
+        setTitle(R.string.title_activity_login);
+    }
+
+    private void initMembers() {
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -112,8 +139,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 //attemptLogin();
@@ -121,18 +147,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 startActivity(intent);
             }
         });
-
-        setTitle(R.string.title_activity_login);
-
-        setupControls();
- //TODO remove cette merde
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
-        registerButton = (Button) findViewById(R.id.register_button);
     }
 
     private void setupControls() {
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -201,8 +219,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        login = mEmailView.getText().toString();
+        password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -214,12 +232,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        // Check for a valid login address.
+        if (TextUtils.isEmpty(login)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(login)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
@@ -230,11 +248,41 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            loginProgress.setVisibility(View.VISIBLE);
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Constants.API_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            IAPIRequest requests = retrofit.create(IAPIRequest.class);
+            Call<TokenModel> call = requests.getToken(login, password);
+            call.enqueue(new Callback<TokenModel>() {
+
+                @Override
+                public void onResponse(Response<TokenModel> response) {
+                    loginProgress.setVisibility(View.GONE);
+                    if (response.code() == 200) {
+                        TokenModel t = response.body();
+                        Log.d("Token", "Token: " + t.getToken());
+                        Constants.sessionToken = t.getToken();
+                        SharedPreferences pref = getSharedPreferences("EpiPrefs", MODE_PRIVATE);
+                        pref.edit().putString("login", login).apply();
+                        pref.edit().putString("password", password).apply();
+                        Constants.login = login;
+                        Intent intent = new Intent(context, HomeActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(context, R.string.connection_error, Toast.LENGTH_SHORT).show();
+                        Log.d("Token", "Wrong credentials");
+                    }
+                }
+
+                @Override
+                public void onFailure(Throwable throwable) {
+                    loginProgress.setVisibility(View.GONE);
+                    Toast.makeText(context, R.string.network_error, Toast.LENGTH_SHORT).show();
+                    Log.d("Token", "Can't access to network");
+                }
+            });
         }
     }
 

@@ -27,14 +27,14 @@
                 android:src="@drawable/logo"/>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/ti_layout_email"
+                android:id="@+id/ti_layout_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/padding_top_login_activity"
                 android:layout_below="@+id/iv_societhy">
 
                 <AutoCompleteTextView
-                    android:id="@+id/email"
+                    android:id="@+id/tv_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
@@ -51,7 +51,7 @@
                 android:layout_below="@+id/ti_layout_email">
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/tv_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -64,7 +64,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/email_sign_in_button"
+                android:id="@+id/sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

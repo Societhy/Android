@@ -41,7 +41,7 @@ public class OrganisationUserListAdapter extends ArrayAdapter<UserModel> {
         if (convertView == null && mInflater != null) {
             convertView = mInflater.inflate(R.layout.row_user_organisation, parent, false);
         }
-        TextView tvDate = (TextView) convertView.findViewById(R.id.tv_user_login);
+        TextView tvDate = (TextView) convertView.findViewById(R.id.tv_row_orga_name);
         tvDate.setText(current.getLogin());
 
 

@@ -13,10 +13,12 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."</string>
+    <string name="network_error">Can not access to network</string>
 
     <!--Login Activity-->
     <string name="register_button">Register</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="connection_error">Wrong credentials</string>
 
     <!--Drawer Menu-->
     <string name="margin_top_iv_drawer">30dp</string>
