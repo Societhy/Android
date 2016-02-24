@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/cdprojekt"
-        android:layout_marginLeft="@dimen/padding_left_orga_user"
+        android:layout_marginLeft="@dimen/padding_orga_user"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
