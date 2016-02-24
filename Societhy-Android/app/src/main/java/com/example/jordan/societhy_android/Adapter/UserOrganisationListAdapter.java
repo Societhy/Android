@@ -43,7 +43,6 @@ public class UserOrganisationListAdapter extends ArrayAdapter<OrganisationModel>
         tvDate.setText(current.getName());
 
 
-
         RelativeLayout fullRow = (RelativeLayout) convertView.findViewById(R.id.full_row);
         fullRow.setOnClickListener(new View.OnClickListener() {
             @Override

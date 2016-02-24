@@ -50,7 +50,7 @@ public class UserProfileFragment extends Fragment {
     private RecyclerViewAdapter orgaAdapter;
     private LinearLayout tmp;
     private OnFragmentInteractionListener mListener;
-
+    private LinearLayout li;
 
     public static UserProfileFragment newInstance(String param1, String param2) {
         UserProfileFragment fragment = new UserProfileFragment();
@@ -112,6 +112,9 @@ public class UserProfileFragment extends Fragment {
         svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));svOrga.add(new OrganisationModel("Java", "12/03/1994"));
         svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
         svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
+<<<<<<< HEAD
+        orgaAdapter = new UserOrganisationListAdapter(getContext(), R.layout.row_user_organisation, svOrga, this.getActivity());
+=======
 
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -120,20 +123,27 @@ public class UserProfileFragment extends Fragment {
 
         orgaAdapter = new RecyclerViewAdapter(svOrga);
         //orgaAdapter = new UserOrganisationListAdapter(getContext(), R.layout.row_user_organisation, svOrga, this.getActivity());
+>>>>>>> f31c391b1430497fccf9dca7cf05c9680a99a60f
         adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list, this.getActivity());
 
         lvUserProfile.setAdapter(adapter);
+<<<<<<< HEAD
+
+        svUserOrga.addView(li);
+=======
         rvUserOrganisation.setAdapter(orgaAdapter);
         rvUserOrganisation.setItemAnimator(new DefaultItemAnimator());
         //tmp.addView(orgaAdapter.getView(0, null, null));
 
         //svUserOrga.addView(orgaAdapter.getView(1, null, null));
+>>>>>>> f31c391b1430497fccf9dca7cf05c9680a99a60f
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
+
         }
     }
 

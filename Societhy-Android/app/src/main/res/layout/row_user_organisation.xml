@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/full_row"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
+    android:orientation="vertical">
+=======
     android:layout_marginTop="@dimen/padding_orga_user"
     android:layout_marginLeft="@dimen/padding_orga_user">
+>>>>>>> f31c391b1430497fccf9dca7cf05c9680a99a60f
 
     <ImageView
         android:id="@+id/iv_row_orga_picture"
@@ -24,4 +28,4 @@
         android:layout_below="@+id/iv_row_orga_picture" />
 
 
-</RelativeLayout>
+</LinearLayout>
