@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.jordan.societhy_android.Activity.R;
 import com.example.jordan.societhy_android.Adapter.OrganisationListAdapter;
@@ -49,6 +50,7 @@ public class SearchOrganisationFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private OrganisationListAdapter adapter;
+    private TextView tvFilterSearch;
 
     /**
      * Use this factory method to create a new instance of
@@ -87,7 +89,9 @@ public class SearchOrganisationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_organisation, container, false);
         ButterKnife.bind(this, view);
+        tvFilterSearch = (TextView) view.findViewById(R.id.tv_filter_search);
         initViews();
+        initMembers();
         return view;
     }
 
@@ -107,6 +111,16 @@ public class SearchOrganisationFragment extends Fragment {
 
         adapter = new OrganisationListAdapter(getContext(), R.layout.row_news, organisations, this.getActivity());
         lvOrganisations.setAdapter(adapter);
+
+    }
+
+    private void initMembers() {
+        tvFilterSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayoutFilter.closeDrawers();
+            }
+        });
     }
 
     @Override
