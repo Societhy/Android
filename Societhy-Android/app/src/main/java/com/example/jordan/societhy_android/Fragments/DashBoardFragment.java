@@ -139,13 +139,17 @@ public class DashBoardFragment extends Fragment {
 
     private void updateViews(int pager) {
         if (pager == NEWS_PAGE_SELECTED) {
-            tvNews.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButton));
-            tvNewsOrga.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButtonHighlight));
+            //tvNews.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButton));
+            tvNews.setBackgroundResource(R.drawable.dashboard_button_selected_shape);
+            //tvNewsOrga.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButtonHighlight));
+            tvNewsOrga.setBackgroundResource(R.drawable.dashboard_button_unselected_shape);
             adapter = new NewsListAdapter(getContext(), R.layout.row_news, newsGenerator(NEWS_PAGE_SELECTED), this.getActivity());
             lvNews.setAdapter(adapter);
         } else {
-            tvNewsOrga.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButton));
-            tvNews.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButtonHighlight));
+            //tvNewsOrga.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButton));
+            tvNewsOrga.setBackgroundResource(R.drawable.dashboard_button_selected_shape);
+            tvNews.setBackgroundResource(R.drawable.dashboard_button_unselected_shape);
+            //tvNews.setBackgroundColor(getResources().getColor(R.color.greyDashBoardButtonHighlight));
             adapter = new NewsListAdapter(getContext(), R.layout.row_news, newsGenerator(NEWS_ORGA_PAGE_SELECTED), this.getActivity());
             lvNews.setAdapter(adapter);
         }

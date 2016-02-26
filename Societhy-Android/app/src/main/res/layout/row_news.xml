@@ -19,6 +19,7 @@
         android:paddingTop="@dimen/padding_top_row_orga"
         android:textColor="@android:color/black"
         android:typeface="monospace"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -27,9 +28,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="17/02/2016"
-        android:paddingLeft="@dimen/padding_row_orga"
+        android:paddingRight="20dp"
         android:paddingTop="@dimen/padding_top_row_orga"
-        android:layout_toRightOf="@+id/tv_name_orga"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
     <TextView
         android:id="@+id/tv_news"
         android:layout_width="match_parent"

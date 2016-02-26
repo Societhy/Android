@@ -23,7 +23,7 @@ import com.example.jordan.societhy_android.Activity.R;
 import com.example.jordan.societhy_android.Adapter.NewsListAdapter;
 import com.example.jordan.societhy_android.Adapter.OrganisationUserListAdapter;
 import com.example.jordan.societhy_android.Models.NewsModel;
-import com.example.jordan.societhy_android.Models.UserModel;
+import com.example.jordan.societhy_android.Models.UserModelTmp;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,10 +87,10 @@ public class OrganisationProfileFragment extends Fragment {
         list.add(new NewsModel("orga" , "14/02/2016", "OKKKKLM"));
 
 
-        List<UserModel> svOrga = new ArrayList<UserModel>();
-        svOrga.add(new UserModel("Toto"));
-        svOrga.add(new UserModel("Jojo"));
-        svOrga.add(new UserModel("Tetraa"));
+        List<UserModelTmp> svOrga = new ArrayList<UserModelTmp>();
+        svOrga.add(new UserModelTmp("Toto"));
+        svOrga.add(new UserModelTmp("Jojo"));
+        svOrga.add(new UserModelTmp("Tetraa"));
 
 
         userAdapter = new OrganisationUserListAdapter(getContext(), R.layout.row_user_organisation, svOrga, this.getActivity());

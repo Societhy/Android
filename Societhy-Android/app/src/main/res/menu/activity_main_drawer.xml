@@ -11,11 +11,11 @@
             android:title="Search" />
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/logo"
+            android:icon="@android:drawable/presence_invisible"
             android:title="User Profile" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/logo"
+            android:icon="@android:drawable/presence_invisible"
             android:title="About" />
         <item
             android:id="@+id/nav_administration"

@@ -37,9 +37,17 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+//import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.jordan.societhy_android.APIRequest.IAPIRequest;
 import com.example.jordan.societhy_android.Constants;
 import com.example.jordan.societhy_android.Models.TokenModel;
+import com.example.jordan.societhy_android.Models.UserModel;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +57,7 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.GsonConverterFactory;
+import retrofit2.JacksonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
@@ -239,30 +248,38 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView.requestFocus();
         } else {
             loginProgress.setVisibility(View.VISIBLE);
+
+            //ObjectMapper mapper = new ObjectMapper();
+
+            //mapper.configure(com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(Constants.API_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(JacksonConverterFactory.create())
                     .build();
             IAPIRequest requests = retrofit.create(IAPIRequest.class);
-            Call<TokenModel> call = requests.getToken(login, password);
-            call.enqueue(new Callback<TokenModel>() {
-
+            //Call<TokenModel> call = requests.getToken(login, password);
+            Call<UserModel> call = requests.getUser("testooo");
+            call.enqueue(new Callback<UserModel>() {
                 @Override
-                public void onResponse(Response<TokenModel> response) {
+                public void onResponse(Response<UserModel> response) {
                     loginProgress.setVisibility(View.GONE);
+                    Log.d("onResponse", "response.body : " + response.body().toString());
                     if (response.code() == 200) {
-                        TokenModel t = response.body();
-                        Log.d("Token", "Token: " + t.getToken());
-                        Constants.sessionToken = t.getToken();
+                        UserModel t = response.body();
+                        /*Log.d("Token", "Token: " + t.getToken());
+                        Constants.sessionToken = t.getToken();*/
                         SharedPreferences pref = getSharedPreferences("EpiPrefs", MODE_PRIVATE);
                         pref.edit().putString("login", login).apply();
                         pref.edit().putString("password", password).apply();
                         Constants.login = login;
+                        Log.v("onResponseAPI", "ONRESPONSE");
+                        Log.v("Token", "Last Name: " + t.getLastname() + " nick name = " + t.getNickname() + " firstname = " + t.getFirstname());
                         Intent intent = new Intent(context, HomeActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(context, R.string.connection_error, Toast.LENGTH_SHORT).show();
-                        Log.d("Token", "Wrong credentials");
+                        Log.v("Token", "Wrong credentials");
                     }
                 }
 
@@ -270,9 +287,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 public void onFailure(Throwable throwable) {
                     loginProgress.setVisibility(View.GONE);
                     Toast.makeText(context, R.string.network_error, Toast.LENGTH_SHORT).show();
-                    Log.d("Token", "Can't access to network");
+                    Log.v("Token", "Can't access to network");
+                    Log.v("onFailure", ""+ throwable.toString());
                 }
             });
+            /*RequestQueue queue = Volley.newRequestQueue(this);
+            String url ="http://10.41.177.67:3000/api/user/testooo";
+
+// Request a string response from the provided URL.
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.v("onResponse", "response : " + response);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.v("onError", "error : " + error);
+                }
+            });
+            queue.add(stringRequest);*/
         }
     }
 

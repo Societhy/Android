@@ -38,24 +38,25 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:weightSum="1.5"
         android:layout_below="@+id/tv_Description"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:layout_marginTop="@dimen/padding_top_lv_user_profile"
+        android:orientation="vertical">
 
         <ListView
             android:id="@+id/lv_user_profile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_top_lv_user_profile"
-            android:layout_weight="0.15">
+            android:layout_height="0dp"
+            android:layout_weight="1.2">
         </ListView>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_user_organisation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.85">
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:paddingTop="10dp">
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 </RelativeLayout>

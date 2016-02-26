@@ -2,6 +2,7 @@ package com.example.jordan.societhy_android.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class OrganisationAdministrationActivity extends AppCompatActivity {
     ImageView ivOrgaPicture;
     @Bind(R.id.tv_name)
     TextView tvName;
+    @Bind(R.id.iv_back)
+    ImageView ivBack;
     private TextView organisationName;
     //private Toolbar toolbar;
 
@@ -47,5 +50,11 @@ public class OrganisationAdministrationActivity extends AppCompatActivity {
 
     private void initViews() {
         //toolbar.setLogo(R.drawable.office_list);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }
