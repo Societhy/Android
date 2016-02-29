@@ -39,7 +39,7 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-//import com.android.volley.Response;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -48,6 +48,9 @@ import com.example.jordan.societhy_android.Constants;
 import com.example.jordan.societhy_android.Models.TokenModel;
 import com.example.jordan.societhy_android.Models.UserModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +61,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.GsonConverterFactory;
 import retrofit2.JacksonConverterFactory;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -141,7 +143,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
+                attemptLogin();
                 Intent intent = new Intent(getBaseContext(), HomeActivity.class);
                 startActivity(intent);
             }
@@ -253,7 +255,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             //mapper.configure(com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
 
-            Retrofit retrofit = new Retrofit.Builder()
+            /*Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(Constants.API_URL)
                     .addConverterFactory(JacksonConverterFactory.create())
                     .build();
@@ -267,8 +269,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Log.d("onResponse", "response.body : " + response.body().toString());
                     if (response.code() == 200) {
                         UserModel t = response.body();
-                        /*Log.d("Token", "Token: " + t.getToken());
-                        Constants.sessionToken = t.getToken();*/
+                        *//*Log.d("Token", "Token: " + t.getToken());
+                        Constants.sessionToken = t.getToken();*//*
                         SharedPreferences pref = getSharedPreferences("EpiPrefs", MODE_PRIVATE);
                         pref.edit().putString("login", login).apply();
                         pref.edit().putString("password", password).apply();
@@ -290,16 +292,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Log.v("Token", "Can't access to network");
                     Log.v("onFailure", ""+ throwable.toString());
                 }
-            });
-            /*RequestQueue queue = Volley.newRequestQueue(this);
-            String url ="http://10.41.177.67:3000/api/user/testooo";
-
+            });*/
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url ="http://192.168.1.15:3000/api/user/testooo";
 // Request a string response from the provided URL.
+            Log.v("AttemptLogin", "before StringRequestQueue instanciation");
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Log.v("onResponse", "response : " + response);
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                String test = jsonObject.getString("nickname");
+                                Log.v("test", "" + test);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -307,7 +316,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Log.v("onError", "error : " + error);
                 }
             });
-            queue.add(stringRequest);*/
+            Log.v("AttemptLogin", "after StringRequestQueue instanciation");
+            queue.add(stringRequest);
         }
     }
 

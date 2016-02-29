@@ -11,16 +11,15 @@
         android:layout_gravity="left"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="1dp"
         android:src="@drawable/cdprojekt"
     />
 
     <TextView
         android:id="@+id/tv_user_profile"
-        android:layout_width="222dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="false"
+        android:layout_toRightOf="@+id/iv_user_profile"
+        android:layout_marginLeft="@dimen/default_margin_organisation_profile"
         android:layout_marginRight="37dp"
         android:layout_alignTop="@+id/iv_user_profile"
         android:layout_alignBottom="@+id/iv_user_profile" />
@@ -28,11 +27,12 @@
     <TextView
         android:id="@+id/tv_Description"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/text_description_size"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/iv_user_profile"
         android:layout_alignLeft="@+id/iv_user_profile"
         android:layout_alignStart="@+id/iv_user_profile"
-        android:layout_marginTop="15dp"
+        android:layout_marginRight="@dimen/default_margin_organisation_profile"
+        android:layout_marginTop="@dimen/default_margin_organisation_profile"
         android:layout_alignRight="@+id/tv_user_profile"
         android:layout_alignEnd="@+id/tv_user_profile" />
 
