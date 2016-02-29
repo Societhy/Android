@@ -32,7 +32,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="2dp"
-            android:background="@drawable/dashboard_button_shape"
+            android:background="@drawable/dashboard_button_selected_shape"
             android:textSize="40sp"
             android:textColor="@android:color/white"
 
@@ -45,7 +45,7 @@
             android:text="@string/tv_news_orga"
             android:gravity="center"
             android:textSize="20sp"
-            android:background="@drawable/dashboard_button_shape"
+            android:background="@drawable/dashboard_button_selected_shape"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="2dp"
@@ -59,6 +59,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/padding_row_orga"
         android:paddingLeft="@dimen/padding_row_orga"
+        android:paddingRight="@dimen/padding_row_orga"
         android:layout_below="@+id/selector_layout">
 
     </ListView>

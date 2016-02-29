@@ -19,7 +19,6 @@ import android.widget.TextView;
 import com.example.jordan.societhy_android.Activity.R;
 import com.example.jordan.societhy_android.Adapter.ActivityListAdapter;
 import com.example.jordan.societhy_android.Adapter.RecyclerViewAdapter;
-import com.example.jordan.societhy_android.Adapter.UserOrganisationListAdapter;
 import com.example.jordan.societhy_android.Models.OrganisationModel;
 import com.example.jordan.societhy_android.Models.UserActivityModel;
 
@@ -29,21 +28,25 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-
 /**
- * Created by aureliengiudici on 18/02/2016.
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link ProjectProfileFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link ProjectProfileFragment#newInstance} factory method to
+ * create an instance of this fragment.
  */
-public class UserProfileFragment extends Fragment {
-    @Bind(R.id.iv_user_profile)
-    ImageView ivUserProfile;
-    @Bind(R.id.tv_user_profile)
-    TextView tvUserProfile;
-    @Bind(R.id.lv_user_profile)
-    ListView lvUserProfile;
-    @Bind(R.id.tv_Description)
+public class ProjectProfileFragment extends Fragment {
+    @Bind(R.id.iv_project_profile)
+    ImageView ivProjectProfile;
+    @Bind(R.id.tv_project_profile)
+    TextView tvProjectProfile;
+    @Bind(R.id.lv_project_profile)
+    ListView lvProjectProfile;
+    @Bind(R.id.tv_project_description)
     TextView tvDescription;
-    @Bind(R.id.rv_user_organisation)
-    RecyclerView rvUserOrganisation;
+    @Bind(R.id.rv_project_user)
+    RecyclerView rvProjectOrganisation;
 
     private View view;
     private ActivityListAdapter adapter;
@@ -57,7 +60,7 @@ public class UserProfileFragment extends Fragment {
         return fragment;
     }
 
-    public UserProfileFragment() {
+    public ProjectProfileFragment() {
         // Required empty public constructor
     }
 
@@ -77,38 +80,27 @@ public class UserProfileFragment extends Fragment {
     }
 
     private void initViews() {
-        tvUserProfile.setText("Aurélien Giudici, 14/04/1995");
-        tvUserProfile.setTextSize(14);
-        tvUserProfile.setTextColor(Color.GRAY);
-        tvDescription.setText("Einstein présente un parcours scolaire relativement atypique par rapport aux éminents scientifiques qui furent plus tard ses contemporains. Très tôt, le jeune homme s'insurge du pouvoir arbitraire exercé par les enseignants, et est donc souvent dépeint comme un mauvais élément très étourdi par ces derniers. Il éprouve jusque tard dans son enfance des difficultés pour s'exprimer");
+        tvProjectProfile.setText("Project POPOP, 14/04/1995\nUn projet cool et plein de vie");
+        tvProjectProfile.setTextSize(14);
+        tvProjectProfile.setTextColor(Color.GRAY);
+        tvDescription.setText("Super content, c'est trop bien");
         tvDescription.setTextSize(10);
-        tvUserProfile.setTextColor(Color.GRAY);
+        tvProjectProfile.setTextColor(Color.GRAY);
         List<UserActivityModel> list = new ArrayList<UserActivityModel>();
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content vActivity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content Activity Content"));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
-        list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
+        list.add(new UserActivityModel("14/02/2016", "This project is begin"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
+        list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
+        list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
 
 
 
@@ -127,14 +119,14 @@ public class UserProfileFragment extends Fragment {
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
 
-        rvUserOrganisation.setLayoutManager(layoutManager);
+        rvProjectOrganisation.setLayoutManager(layoutManager);
 
         orgaAdapter = new RecyclerViewAdapter(svOrga);
         adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list, this.getActivity());
 
-        lvUserProfile.setAdapter(adapter);
-        rvUserOrganisation.setAdapter(orgaAdapter);
-        rvUserOrganisation.setItemAnimator(new DefaultItemAnimator());
+        lvProjectProfile.setAdapter(adapter);
+        rvProjectOrganisation.setAdapter(orgaAdapter);
+        rvProjectOrganisation.setItemAnimator(new DefaultItemAnimator());
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorGreenToolBar</item>
-        <item name="colorPrimaryDark">@color/colorGreenStatusBar</item>
+        <item name="colorPrimary">@color/colorBlueToolBar</item>
+        <item name="colorPrimaryDark">@color/colorBlueStatusBar</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="AppTheme.NoActionBar">

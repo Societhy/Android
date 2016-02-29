@@ -233,6 +233,8 @@ public class HomeActivity extends AppCompatActivity implements
                     Log.v("UserProfile", "UserProfile");
                     fragmentClass = UserProfileFragment.class;
                     break;
+                case R.id.nav_logout:
+                    finish();
                 default:
                     fragmentClass = DashBoardFragment.class;
             }

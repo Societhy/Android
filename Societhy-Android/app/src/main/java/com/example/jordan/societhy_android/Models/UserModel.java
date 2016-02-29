@@ -1,89 +1,194 @@
 package com.example.jordan.societhy_android.Models;
 
 /**
- * Created by aureliengiudici on 18/02/2016.
+ * Created by jordan on 24/02/2016.
  */
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class UserModel {
-    private String Login;
-    private String FirstName;
-    private String LastName;
-    private String bithDate;
-    private String genre;
-    private String presentation;
 
-    public UserModel() {
+    @JsonProperty("addresses")
+    private List<String> addresses = new ArrayList<String>();
+    @JsonProperty("firstname")
+    private String firstname;
+    @JsonProperty("lastname")
+    private String lastname;
+    @JsonProperty("nickname")
+    private String nickname;
+    @JsonProperty("mail")
+    private String mail;
+    @JsonProperty("profilePic")
+    private String profilePic;
+    @JsonProperty("listOrga")
+    private List<String> listOrga = new ArrayList<String>();
+    @JsonProperty("transactionHistoric")
+    private List<Object> transactionHistoric = new ArrayList<Object>();
+    @JsonProperty("contacts")
+    private List<String> contacts = new ArrayList<String>();
+    /**
+     *
+     * @return
+     * The addresses
+     */
+    public List<String> getAddresses() {
+        return addresses;
     }
 
-    public UserModel(String login) {
-        Login = login;
+    /**
+     *
+     * @param addresses
+     * The addresses
+     */
+    public void setAddresses(List<String> addresses) {
+        this.addresses = addresses;
     }
 
-    public UserModel(String login, String firstName, String lastName, String bithDate, String genre, String presentation) {
-        Login = login;
-        FirstName = firstName;
-        LastName = lastName;
-        this.bithDate = bithDate;
-        this.genre = genre;
-        this.presentation = presentation;
+    /**
+     *
+     * @return
+     * The firstname
+     */
+    public String getFirstname() {
+        return firstname;
     }
 
-    public String getLogin() {
-        return Login;
+    /**
+     *
+     * @param firstname
+     * The firstname
+     */
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public void setLogin(String login) {
-        Login = login;
+    /**
+     *
+     * @return
+     * The lastname
+     */
+    public String getLastname() {
+        return lastname;
     }
 
-    public String getFirstName() {
-        return FirstName;
+    /**
+     *
+     * @param lastname
+     * The lastname
+     */
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public void setFirstName(String firstName) {
-        FirstName = firstName;
+    /**
+     *
+     * @return
+     * The nickname
+     */
+    public String getNickname() {
+        return nickname;
     }
 
-    public String getLastName() {
-        return LastName;
+    /**
+     *
+     * @param nickname
+     * The nickname
+     */
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public void setLastName(String lastName) {
-        LastName = lastName;
+    /**
+     *
+     * @return
+     * The mail
+     */
+    public String getMail() {
+        return mail;
     }
 
-    public String getBithDate() {
-        return bithDate;
+    /**
+     *
+     * @param mail
+     * The mail
+     */
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public void setBithDate(String bithDate) {
-        this.bithDate = bithDate;
+    /**
+     *
+     * @return
+     * The profilePic
+     */
+    public String getProfilePic() {
+        return profilePic;
     }
 
-    public String getGenre() {
-        return genre;
+    /**
+     *
+     * @param profilePic
+     * The profilePic
+     */
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    /**
+     *
+     * @return
+     * The listOrga
+     */
+    public List<String> getListOrga() {
+        return listOrga;
     }
 
-    public String getPresentation() {
-        return presentation;
+    /**
+     *
+     * @param listOrga
+     * The listOrga
+     */
+    public void setListOrga(List<String> listOrga) {
+        this.listOrga = listOrga;
     }
 
-    public void setPresentation(String presentation) {
-        this.presentation = presentation;
+    /**
+     *
+     * @return
+     * The transactionHistoric
+     */
+    public List<Object> getTransactionHistoric() {
+        return transactionHistoric;
     }
 
-    @Override
-    public String toString() {
-        return "UserModel{" +
-                "Login='" + Login + '\'' +
-                ", FirstName='" + FirstName + '\'' +
-                ", LastName='" + LastName + '\'' +
-                ", bithDate='" + bithDate + '\'' +
-                ", genre='" + genre + '\'' +
-                ", presentation='" + presentation + '\'' +
-                '}';
+    /**
+     *
+     * @param transactionHistoric
+     * The transactionHistoric
+     */
+    public void setTransactionHistoric(List<Object> transactionHistoric) {
+        this.transactionHistoric = transactionHistoric;
+    }
+
+    /**
+     *
+     * @return
+     * The contacts
+     */
+    public List<String> getContacts() {
+        return contacts;
+    }
+
+    /**
+     *
+     * @param contacts
+     * The contacts
+     */
+    public void setContacts(List<String> contacts) {
+        this.contacts = contacts;
     }
 }

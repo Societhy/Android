@@ -13,18 +13,18 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.jordan.societhy_android.Activity.R;
-import com.example.jordan.societhy_android.Models.UserModel;
+import com.example.jordan.societhy_android.Models.UserModelTmp;
 
 import java.util.List;
 
 
-public class OrganisationUserListAdapter extends ArrayAdapter<UserModel> {
+public class OrganisationUserListAdapter extends ArrayAdapter<UserModelTmp> {
     private static LayoutInflater mInflater = null;
-    private static List<UserModel> objs;
+    private static List<UserModelTmp> objs;
     private Context context;
     private Activity activity;
 
-    public OrganisationUserListAdapter(Context context, int layout, List<UserModel> objects, Activity activity) {
+    public OrganisationUserListAdapter(Context context, int layout, List<UserModelTmp> objects, Activity activity) {
         super(context, layout, objects);
         this.context = context;
         objs = objects;
@@ -37,7 +37,7 @@ public class OrganisationUserListAdapter extends ArrayAdapter<UserModel> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final UserModel current = objs.get(position);
+        final UserModelTmp current = objs.get(position);
         if (convertView == null && mInflater != null) {
             convertView = mInflater.inflate(R.layout.row_user_organisation, parent, false);
         }
