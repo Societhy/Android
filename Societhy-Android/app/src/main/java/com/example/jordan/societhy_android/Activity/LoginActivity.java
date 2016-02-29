@@ -50,11 +50,15 @@ import com.example.jordan.societhy_android.Models.TokenModel;
 import com.example.jordan.societhy_android.Models.UserModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -136,7 +140,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
+                attemptLogin();
                 Intent intent = new Intent(getBaseContext(), HomeActivity.class);
                 startActivity(intent);
             }
@@ -244,57 +248,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             loginProgress.setVisibility(View.VISIBLE);
 
-            //ObjectMapper mapper = new ObjectMapper();
-
-            //mapper.configure(com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-    /*
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Constants.API_URL)
-                    .addConverterFactory(JacksonConverterFactory.create())
-                    .build();
-            IAPIRequest requests = retrofit.create(IAPIRequest.class);
-            //Call<TokenModel> call = requests.getToken(login, password);
-            Call<UserModel> call = requests.getUser("testooo");
-            call.enqueue(new Callback<UserModel>() {
-                @Override
-                public void onResponse(Response<UserModel> response) {
-                    loginProgress.setVisibility(View.GONE);
-                    Log.d("onResponse", "response.body : " + response.body().toString());
-                    if (response.code() == 200) {
-                        UserModel t = response.body();
-                        /*Log.d("Token", "Token: " + t.getToken());
-                        Constants.sessionToken = t.getToken();
-                        SharedPreferences pref = getSharedPreferences("EpiPrefs", MODE_PRIVATE);
-                        pref.edit().putString("login", login).apply();
-                        pref.edit().putString("password", password).apply();
-                        Constants.login = login;
-                        Log.v("onResponseAPI", "ONRESPONSE");
-                        Log.v("Token", "Last Name: " + t.getLastname() + " nick name = " + t.getNickname() + " firstname = " + t.getFirstname());
-                        Intent intent = new Intent(context, HomeActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(context, R.string.connection_error, Toast.LENGTH_SHORT).show();
-                        Log.v("Token", "Wrong credentials");
-                    }
-                }
-
-                @Override
-                public void onFailure(Throwable throwable) {
-                    loginProgress.setVisibility(View.GONE);
-                    Toast.makeText(context, R.string.network_error, Toast.LENGTH_SHORT).show();
-                    Log.v("Token", "Can't access to network");
-                    Log.v("onFailure", ""+ throwable.toString());
-                }
-            });*/
             RequestQueue queue = Volley.newRequestQueue(this);
-            String url ="http://10.41.177.67:3000/api/user/testooo";
 
-            // Request a string response from the provided URL.
+            String url ="http://192.168.1.15:3000/api/user/testooo";
+// Request a string response from the provided URL.
+            Log.v("AttemptLogin", "before StringRequestQueue instanciation");
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Log.v("onResponse", "response : " + response);
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                String test = jsonObject.getString("nickname");
+                                Log.v("test", "" + test);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }, new Response.ErrorListener() {
                 @Override

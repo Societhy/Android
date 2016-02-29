@@ -27,6 +27,7 @@ import com.example.jordan.societhy_android.Fragments.DashBoardFragment;
 import com.example.jordan.societhy_android.Fragments.OrganisationProfileFragment;
 import com.example.jordan.societhy_android.Fragments.UserProfileFragment;
 import com.example.jordan.societhy_android.Fragments.SearchOrganisationFragment;
+import com.example.jordan.societhy_android.Models.Organisation;
 import com.example.jordan.societhy_android.Utils;
 
 import butterknife.Bind;
@@ -216,7 +217,8 @@ public class HomeActivity extends AppCompatActivity implements
                     break;
                 case R.id.nav_profile:
                     Log.v("UserProfile", "UserProfile");
-                    fragmentClass = UserProfileFragment.class;
+                    fragmentClass = OrganisationProfileFragment.class;
+                    //fragmentClass = UserProfileFragment.class;
                     break;
                 case R.id.nav_logout:
                     finish();

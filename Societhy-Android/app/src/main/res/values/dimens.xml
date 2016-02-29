@@ -21,6 +21,9 @@
     <dimen name="padding_bot_lv_user_profile">20dp</dimen>
     <dimen name="text_description_size">80dp</dimen>
 
+    <!--Organisation Profile-->
+    <dimen name="default_margin_organisation_profile">20dp</dimen>
+
     <!--Home Activity-->
     <dimen name="text_size_toolbar_title">30sp</dimen>
     <dimen name="padding_row_orga">15dp</dimen>
@@ -33,5 +36,8 @@
     <dimen name="margin_et_search">10dp</dimen>
     <dimen name="filter_default_margin">20dp</dimen>
     <dimen name="filter_default_text_size">20sp</dimen>
+
+    <!--Organisation Projects Drawer-->
+    <dimen name="default_margin_projects_drawer">20dp</dimen>
 
 </resources>
