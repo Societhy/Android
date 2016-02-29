@@ -29,6 +29,9 @@
     <string name="tv_news">News</string>
     <string name="tv_news_orga">Organisations News</string>
 
+    <!--filter search navigation drawer-->
+    <string name="et_filter_search"><i>Search</i></string>
+    <string name="tv_most_recently">Most recently</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_organisation_administration">OrganisationAdministrationActivity

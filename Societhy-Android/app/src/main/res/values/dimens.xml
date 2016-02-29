@@ -29,4 +29,9 @@
     <!--OrganisationAdministration Activity-->
     <dimen name="padding_back_btn">10dp</dimen>
 
+    <!--filter navigation drawer-->
+    <dimen name="margin_et_search">10dp</dimen>
+    <dimen name="filter_default_margin">20dp</dimen>
+    <dimen name="filter_default_text_size">20sp</dimen>
+
 </resources>

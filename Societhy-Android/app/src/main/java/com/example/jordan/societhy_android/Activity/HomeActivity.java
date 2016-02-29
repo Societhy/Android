@@ -79,7 +79,6 @@ public class HomeActivity extends AppCompatActivity implements
         topChannelMenu.add("Bar").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Log.v("onMenuItemClick", "CLICK TA MERE");
                 Intent intent = new Intent(getBaseContext(), OrganisationAdministrationActivity.class);
                 intent.putExtra("name", item.getTitle());
                 startActivity(intent);
@@ -89,7 +88,6 @@ public class HomeActivity extends AppCompatActivity implements
         topChannelMenu.add("Baz").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Log.v("onMenuItemClick", "CLICK TA MERE");
                 Intent intent = new Intent(getBaseContext(), OrganisationAdministrationActivity.class);
                 intent.putExtra("name", item.getTitle());
                 startActivity(intent);
@@ -99,7 +97,6 @@ public class HomeActivity extends AppCompatActivity implements
         topChannelMenu.add("Foo").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Log.v("onMenuItemClick", "CLICK TA MERE");
                 Intent intent = new Intent(getBaseContext(), OrganisationAdministrationActivity.class);
                 intent.putExtra("name", item.getTitle());
                 startActivity(intent);
@@ -109,7 +106,6 @@ public class HomeActivity extends AppCompatActivity implements
         topChannelMenu.add("Bar").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Log.v("onMenuItemClick", "CLICK TA MERE");
                 Intent intent = new Intent(getBaseContext(), OrganisationAdministrationActivity.class);
                 intent.putExtra("name", item.getTitle());
                 startActivity(intent);
@@ -119,23 +115,12 @@ public class HomeActivity extends AppCompatActivity implements
         topChannelMenu.add("Baz").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Log.v("onMenuItemClick", "CLICK TA MERE");
                 Intent intent = new Intent(getBaseContext(), OrganisationAdministrationActivity.class);
                 intent.putExtra("name", item.getTitle());
                 startActivity(intent);
                 return false;
             }
         });
-           /* topChannelMenu.getItem().setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    Log.v("onMenuItemClick", "CLICK TA MERE");
-                    Intent intent = new Intent(getBaseContext(), OrganisationAdministrationActivity.class);
-                    intent.putExtra("name", item.getTitle());
-                    startActivity(intent);
-                    return false;
-                }
-            );*/
 
 
         setupDrawerContent(navView);
