@@ -1,22 +1,16 @@
-package com.example.jordan.societhy_android.Fragments;
+package com.example.jordan.societhy_android.Activity;
 
-import android.app.Activity;
 import android.graphics.Color;
-import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.jordan.societhy_android.Activity.R;
 import com.example.jordan.societhy_android.Adapter.ActivityListAdapter;
 import com.example.jordan.societhy_android.Adapter.RecyclerViewAdapter;
 import com.example.jordan.societhy_android.Models.OrganisationModel;
@@ -28,15 +22,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ProjectProfileFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ProjectProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ProjectProfileFragment extends Fragment {
+public class ProjectActivity extends AppCompatActivity {
+
     @Bind(R.id.iv_project_profile)
     ImageView ivProjectProfile;
     @Bind(R.id.tv_project_profile)
@@ -51,32 +38,13 @@ public class ProjectProfileFragment extends Fragment {
     private View view;
     private ActivityListAdapter adapter;
     private RecyclerViewAdapter orgaAdapter;
-    private LinearLayout tmp;
-    private OnFragmentInteractionListener mListener;
-    private LinearLayout li;
-
-    public static UserProfileFragment newInstance(String param1, String param2) {
-        UserProfileFragment fragment = new UserProfileFragment();
-        return fragment;
-    }
-
-    public ProjectProfileFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.activity_project_profile, container, false);
-        ButterKnife.bind(this, view);
+        setContentView(R.layout.activity_project_profile);
+        ButterKnife.bind(this);
         initViews();
-        return view;
     }
 
     private void initViews() {
@@ -117,64 +85,15 @@ public class ProjectProfileFragment extends Fragment {
         svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
 
         LinearLayoutManager layoutManager
-                = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         rvProjectOrganisation.setLayoutManager(layoutManager);
 
         orgaAdapter = new RecyclerViewAdapter(svOrga);
-        adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list, this.getActivity());
+        adapter = new ActivityListAdapter(this, R.layout.row_activity, list);
 
         lvProjectProfile.setAdapter(adapter);
         rvProjectOrganisation.setAdapter(orgaAdapter);
         rvProjectOrganisation.setItemAnimator(new DefaultItemAnimator());
     }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-
-        }
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
-
 }
-
