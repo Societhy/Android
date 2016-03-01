@@ -2,6 +2,8 @@ package com.example.jordan.societhy_android.Activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -25,6 +28,7 @@ import android.widget.TextView;
 
 import com.example.jordan.societhy_android.Fragments.DashBoardFragment;
 import com.example.jordan.societhy_android.Fragments.OrganisationProfileFragment;
+import com.example.jordan.societhy_android.Fragments.ProjectProfileFragment;
 import com.example.jordan.societhy_android.Fragments.UserProfileFragment;
 import com.example.jordan.societhy_android.Fragments.SearchOrganisationFragment;
 import com.example.jordan.societhy_android.Models.Organisation;
@@ -35,9 +39,10 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements
         DashBoardFragment.OnFragmentInteractionListener,
-        OrganisationProfileFragment.OnFragmentInteractionListener,
+        /*OrganisationProfileFragment.OnFragmentInteractionListener,*/
         SearchOrganisationFragment.OnFragmentInteractionListener,
-        UserProfileFragment.OnFragmentInteractionListener {
+        UserProfileFragment.OnFragmentInteractionListener,
+        ProjectProfileFragment.OnFragmentInteractionListener {
 
     @Bind(R.id.toolbar_title)
     TextView toolbarTitle;
@@ -51,6 +56,7 @@ public class HomeActivity extends AppCompatActivity implements
     NavigationView navView;
     @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
+
     private int currentFragment;
 
     @Override
@@ -209,16 +215,14 @@ public class HomeActivity extends AppCompatActivity implements
         if (newFragmentId != currentFragment) {
             switch (menuItem.getItemId()) {
                 case R.id.nav_dashboard:
-                    Log.v("DashBoard", "dashboard selected fragment");
                     fragmentClass = DashBoardFragment.class;
                     break;
                 case R.id.nav_search_organisation:
                     fragmentClass = SearchOrganisationFragment.class;
                     break;
                 case R.id.nav_profile:
-                    Log.v("UserProfile", "UserProfile");
-                    fragmentClass = OrganisationProfileFragment.class;
-                    //fragmentClass = UserProfileFragment.class;
+                    //fragmentClass = OrganisationProfileFragment.class;
+                    fragmentClass = UserProfileFragment.class;
                     break;
                 case R.id.nav_logout:
                     finish();
@@ -243,6 +247,23 @@ public class HomeActivity extends AppCompatActivity implements
             toolbarTitle.setText(menuItem.getTitle());
             drawerLayout.closeDrawers();
         }
+    }
+
+    public static void changeFragment(FragmentActivity fragmentActivity, Fragment newFragment) {
+        Class fragmentClass;
+        Fragment fragment = null;
+
+        Log.v("change fragment", "");
+
+        fragmentClass = newFragment.getClass();
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_layout, fragment).commit();
     }
 
     @Override

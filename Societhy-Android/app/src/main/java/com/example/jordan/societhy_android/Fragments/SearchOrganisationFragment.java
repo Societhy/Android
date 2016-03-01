@@ -104,10 +104,26 @@ public class SearchOrganisationFragment extends Fragment {
 
     private void initViews() {
         List<Organisation> organisations = new ArrayList<Organisation>();
+        organisations.add(new Organisation("Organisation 1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation 2", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation 3", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation 4", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation 5", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation 6", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation 7", "s,fzefze,fzelf,zef,zefzefzef"));
         organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
         organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
         organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
         organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+        organisations.add(new Organisation("Organisation1", "s,fzefze,fzelf,zef,zefzefzef"));
+
+
 
         adapter = new OrganisationListAdapter(getContext(), R.layout.row_news, organisations, this.getActivity());
         lvOrganisations.setAdapter(adapter);

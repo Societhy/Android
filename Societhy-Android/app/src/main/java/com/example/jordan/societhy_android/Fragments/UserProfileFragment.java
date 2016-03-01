@@ -132,7 +132,7 @@ public class UserProfileFragment extends Fragment {
         rvUserOrganisation.setLayoutManager(layoutManager);
 
         orgaAdapter = new RecyclerViewAdapter(svOrga);
-        adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list, this.getActivity());
+        adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list);
 
         lvUserProfile.setAdapter(adapter);
         rvUserOrganisation.setAdapter(orgaAdapter);

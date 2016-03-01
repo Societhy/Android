@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -122,7 +123,7 @@ public class ProjectProfileFragment extends Fragment {
         rvProjectOrganisation.setLayoutManager(layoutManager);
 
         orgaAdapter = new RecyclerViewAdapter(svOrga);
-        adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list, this.getActivity());
+        adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list);
 
         lvProjectProfile.setAdapter(adapter);
         rvProjectOrganisation.setAdapter(orgaAdapter);

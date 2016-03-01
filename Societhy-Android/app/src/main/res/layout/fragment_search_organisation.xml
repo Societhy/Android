@@ -1,34 +1,28 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.jordan.societhy_android.Fragments.SearchOrganisationFragment">
-
-    <ListView
-        android:id="@+id/lv_organisations"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
-
-    <android.support.v4.widget.DrawerLayout
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_gravity="end"
         android:id="@+id/drawer_layout_filter"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context="com.example.jordan.societhy_android.Fragments.SearchOrganisationFragment">
+
+        <ListView
+            android:id="@+id/lv_organisations"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+
         <android.support.design.widget.NavigationView
             android:id="@+id/nav_view_filter"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:fitsSystemWindows="true" >
-        <include
-            layout="@layout/search_filter_layout">
+            <include
+                layout="@layout/search_filter_layout">
 
-        </include>
+            </include>
         </android.support.design.widget.NavigationView>
-    </android.support.v4.widget.DrawerLayout>
-
-</FrameLayout>
+</android.support.v4.widget.DrawerLayout>
