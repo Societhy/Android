@@ -27,6 +27,8 @@
 
     <!--DashBoard Fragment-->
     <string name="tv_news">News</string>
+    <string name="tv_vote">Vote</string>
+    <string name="tv_fundraise">Fundraise</string>
     <string name="tv_news_orga">Organisations News</string>
 
     <!--filter search navigation drawer-->

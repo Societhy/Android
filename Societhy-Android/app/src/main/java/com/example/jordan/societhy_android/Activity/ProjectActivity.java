@@ -1,20 +1,28 @@
 package com.example.jordan.societhy_android.Activity;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.jordan.societhy_android.Adapter.ActivityListAdapter;
 import com.example.jordan.societhy_android.Adapter.RecyclerViewAdapter;
+import com.example.jordan.societhy_android.Adapter.VoteListAdapter;
+import com.example.jordan.societhy_android.Constants;
 import com.example.jordan.societhy_android.Models.OrganisationModel;
 import com.example.jordan.societhy_android.Models.UserActivityModel;
+import com.example.jordan.societhy_android.Models.VoteModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,74 +34,174 @@ public class ProjectActivity extends AppCompatActivity {
 
     @Bind(R.id.iv_project_profile)
     ImageView ivProjectProfile;
-    @Bind(R.id.tv_project_profile)
-    TextView tvProjectProfile;
-    @Bind(R.id.lv_project_profile)
-    ListView lvProjectProfile;
+    @Bind(R.id.tv_project_name)
+    TextView tvProjectName;
     @Bind(R.id.tv_project_description)
     TextView tvDescription;
-    @Bind(R.id.rv_project_user)
-    RecyclerView rvProjectOrganisation;
+    @Bind(R.id.btn_news)
+    Button btnNews;
+    @Bind(R.id.btn_vote)
+    Button btnVote;
+    @Bind(R.id.btn_fundraising)
+    Button btnFundraising;
+    @Bind(R.id.fl_project_info)
+    FrameLayout flProjectInfo;
+    @Bind(R.id.rv_last_donation)
+    RecyclerView rvLastDonation;
 
-    private View view;
     private ActivityListAdapter adapter;
     private RecyclerViewAdapter orgaAdapter;
+    private VoteListAdapter voteListAdapter;
+    private String projectName;
+    private ListView lvProjectNews;
+    private int NEWS_PAGE_SELECTED = 1;
+    private int VOTE_PAGE_SELECTED = 2;
+    private int FOUNDRAISING_PAGE_SELECTED = 3;
+    private LayoutInflater inflater;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_profile);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        Bundle bd = intent.getExtras();
         initViews();
+        if (bd != null) {
+            projectName = (String) bd.get(Constants.PROJECT_NAME);
+            tvProjectName.setText(projectName);
+        }
+        initMembers();
     }
 
     private void initViews() {
-        tvProjectProfile.setText("Project POPOP, 14/04/1995\nUn projet cool et plein de vie");
-        tvProjectProfile.setTextSize(14);
-        tvProjectProfile.setTextColor(Color.GRAY);
         tvDescription.setText("Super content, c'est trop bien");
         tvDescription.setTextSize(10);
-        tvProjectProfile.setTextColor(Color.GRAY);
         List<UserActivityModel> list = new ArrayList<UserActivityModel>();
         list.add(new UserActivityModel("14/02/2016", "This project is begin"));
         list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
         list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
         list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
         list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
-        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
+        list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
         list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
-        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
+        list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
         list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
-        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
+        list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
+        list.add(new UserActivityModel("14/02/2016", "Whesh les biatchs ça beigne"));
         list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
         list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
         list.add(new UserActivityModel("14/02/2016", "Je suis un grand garçon, je plus pipi sur le pot"));
         list.add(new UserActivityModel("14/02/2016", "OKKKKLM"));
-
 
 
         List<OrganisationModel> svOrga = new ArrayList<OrganisationModel>();
 
+        svOrga.add(new OrganisationModel("Jean jaques", "12/03/1994"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
         svOrga.add(new OrganisationModel("Java", "12/03/1994"));
         svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));svOrga.add(new OrganisationModel("Java", "12/03/1994"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
+        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
         svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));svOrga.add(new OrganisationModel("Java", "12/03/1994"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
+        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
         svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
         svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
 
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
-        rvProjectOrganisation.setLayoutManager(layoutManager);
+        rvLastDonation.setLayoutManager(layoutManager);
 
         orgaAdapter = new RecyclerViewAdapter(svOrga);
         adapter = new ActivityListAdapter(this, R.layout.row_activity, list);
 
-        lvProjectProfile.setAdapter(adapter);
-        rvProjectOrganisation.setAdapter(orgaAdapter);
-        rvProjectOrganisation.setItemAnimator(new DefaultItemAnimator());
+        //lvProjectProfile.setAdapter(adapter);
+        rvLastDonation.setAdapter(orgaAdapter);
+        rvLastDonation.setItemAnimator(new DefaultItemAnimator());
+
+        inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        //flProjectInfo = inflater.inflate(R.layout.news_project_pager, null);
+        updateViews(NEWS_PAGE_SELECTED);
+    }
+
+    private void initMembers() {
+        /*stub.setLayoutResource(R.layout.whatever_layout_you_want);
+        View inflated = stub.inflate();*/
+        btnNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateViews(NEWS_PAGE_SELECTED);
+            }
+        });
+        btnVote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("bntVoteClick", "s");
+                updateViews(VOTE_PAGE_SELECTED);
+            }
+        });
+        btnFundraising.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateViews(FOUNDRAISING_PAGE_SELECTED);
+            }
+        });
+    }
+
+    private void updateViews(int pager) {
+        if (pager == NEWS_PAGE_SELECTED /* && current != */) {
+            Log.v("in news page", "s");
+            btnNews.setBackgroundResource(R.drawable.dashboard_button_selected_shape);
+            btnVote.setBackgroundResource(R.drawable.dashboard_button_unselected_shape);
+            btnFundraising.setBackgroundResource(R.drawable.dashboard_button_unselected_shape);
+            //flProjectInfo = inflater.inflate(R.layout.news_project_pager, null);
+            flProjectInfo.removeAllViews();
+            flProjectInfo.addView(View.inflate(this, R.layout.news_project_pager, null));
+            initNewsPage();
+        } else if (pager == VOTE_PAGE_SELECTED) {
+            Log.v("in vote page", "s");
+            btnNews.setBackgroundResource(R.drawable.dashboard_button_unselected_shape);
+            btnVote.setBackgroundResource(R.drawable.dashboard_button_selected_shape);
+            btnFundraising.setBackgroundResource(R.drawable.dashboard_button_unselected_shape);
+            flProjectInfo.removeAllViews();
+            flProjectInfo.addView(View.inflate(this, R.layout.vote_project_pager, null));
+            initVotePage();
+        } else {
+            Log.v("in fundraise page", "s");
+            btnNews.setBackgroundResource(R.drawable.dashboard_button_unselected_shape);
+            btnVote.setBackgroundResource(R.drawable.dashboard_button_unselected_shape);
+            btnFundraising.setBackgroundResource(R.drawable.dashboard_button_selected_shape);
+            flProjectInfo.removeAllViews();
+            flProjectInfo.addView(View.inflate(this, R.layout.fundraise_project_pager, null));
+        }
+    }
+
+    private void initNewsPage() {
+        Log.v("in initnewspage", "s");
+        ListView lv = (ListView) flProjectInfo.findViewById(R.id.lv_project_news);
+        lv.setAdapter(adapter);
+    }
+
+    private void initVotePage() {
+        Log.v("in initvotepage", "s");
+        List<VoteModel> voteList = new ArrayList<VoteModel>();
+        voteList.add(new VoteModel(15, 10, "proposition proposition proposition proposition proposition proposition proposition  proposition"));
+        voteList.add(new VoteModel(25, 50, "proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition"));
+        voteList.add(new VoteModel(15, 700, "proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition"));
+        voteList.add(new VoteModel(805, 10, "proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition"));
+        voteList.add(new VoteModel(15, 10, "proposition proposition proposition proposition proposition "));
+        voteList.add(new VoteModel(120, 10, "proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition"));
+        voteList.add(new VoteModel(15, 10, "proposition proposition proposition proposition proposition proposition proposition proposition "));
+
+        voteListAdapter = new VoteListAdapter(this, R.layout.row_project_vote, voteList);
+        ListView lv = (ListView) flProjectInfo.findViewById(R.id.lv_project_vote);
+        lv.setAdapter(voteListAdapter);
     }
 }

@@ -2,6 +2,7 @@ package com.example.jordan.societhy_android.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -14,7 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jordan.societhy_android.Activity.HomeActivity;
+import com.example.jordan.societhy_android.Activity.ProjectActivity;
 import com.example.jordan.societhy_android.Activity.R;
+import com.example.jordan.societhy_android.Constants;
 import com.example.jordan.societhy_android.Fragments.ProjectProfileFragment;
 import com.example.jordan.societhy_android.Models.ProjectModel;
 
@@ -53,8 +56,9 @@ public class ProjectListAdapter extends ArrayAdapter<ProjectModel> {
         FrameLayout fullRow = (FrameLayout) convertView.findViewById(R.id.full_row);
         fullRow.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                //TODO Click sur un projet
-                /*HomeActivity.changeFragment(activity, ProjectProfileFragment.newInstance("", ""));*/
+                Intent intent = new Intent(context, ProjectActivity.class);
+                intent.putExtra(Constants.PROJECT_NAME, current.getName());
+                context.startActivity(intent);
             }
         });
         return convertView;

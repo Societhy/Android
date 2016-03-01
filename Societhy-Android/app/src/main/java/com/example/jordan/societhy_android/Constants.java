@@ -12,4 +12,5 @@ public class Constants {
     public static RequestQueue queue = null;
     public static String[] ORGA = null;
     public static String ORGANISATION_NAME = "organisation_name";
+    public static String PROJECT_NAME = "project_name";
 }
