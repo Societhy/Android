@@ -34,9 +34,7 @@
             android:layout_marginRight="2dp"
             android:background="@drawable/dashboard_button_selected_shape"
             android:textSize="40sp"
-            android:textColor="@android:color/white"
-
-            />
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/tv_news_orga"

@@ -225,7 +225,7 @@ public class HomeActivity extends AppCompatActivity implements
                     fragmentClass = UserProfileFragment.class;
                     break;
                 case R.id.nav_logout:
-                    finish();
+                    onBackPressed();
                 default:
                     fragmentClass = DashBoardFragment.class;
             }

@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,14 +39,14 @@ import butterknife.ButterKnife;
 public class ProjectProfileFragment extends Fragment {
     @Bind(R.id.iv_project_profile)
     ImageView ivProjectProfile;
-    @Bind(R.id.tv_project_profile)
+    @Bind(R.id.tv_project_name)
     TextView tvProjectProfile;
-    @Bind(R.id.lv_project_profile)
+    @Bind(R.id.lv_project_news)
     ListView lvProjectProfile;
     @Bind(R.id.tv_project_description)
     TextView tvDescription;
-    @Bind(R.id.rv_project_user)
-    RecyclerView rvProjectOrganisation;
+    @Bind(R.id.rv_last_donation)
+    RecyclerView rvLastDonation;
 
     private View view;
     private ActivityListAdapter adapter;
@@ -120,14 +119,14 @@ public class ProjectProfileFragment extends Fragment {
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
 
-        rvProjectOrganisation.setLayoutManager(layoutManager);
+        rvLastDonation.setLayoutManager(layoutManager);
 
         orgaAdapter = new RecyclerViewAdapter(svOrga);
         adapter = new ActivityListAdapter(getContext(), R.layout.row_activity, list);
 
         lvProjectProfile.setAdapter(adapter);
-        rvProjectOrganisation.setAdapter(orgaAdapter);
-        rvProjectOrganisation.setItemAnimator(new DefaultItemAnimator());
+        rvLastDonation.setAdapter(orgaAdapter);
+        rvLastDonation.setItemAnimator(new DefaultItemAnimator());
     }
 
     // TODO: Rename method, update argument and hook method into UI event

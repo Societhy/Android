@@ -8,4 +8,5 @@ public class Constants {
     public static String sessionToken = null;
     public static String login = null;
     public static String ORGANISATION_NAME = "organisation_name";
+    public static String PROJECT_NAME = "project_name";
 }
