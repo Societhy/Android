@@ -238,19 +238,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else if (!isEmailValid(login)) {
             tvLogin.setError(getString(R.string.error_invalid_email));
             focusView = tvLogin;
-            cancel = true;
         }
 
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            loginProgress.setVisibility(View.VISIBLE);
+            Constants.queue = Volley.newRequestQueue(this);
 
-            RequestQueue queue = Volley.newRequestQueue(this);
-
-            String url ="http://192.168.1.15:3000/api/user/testooo";
+            String url = Constants.API_URL + "user/";
+            url += "0x0c505d3bdd542f9914e92bd0e12e918878127675";
+            Log.v("url : ", "url : " + url);
 // Request a string response from the provided URL.
             Log.v("AttemptLogin", "before StringRequestQueue instanciation");
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -261,7 +255,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
                                 String test = jsonObject.getString("nickname");
-                                Log.v("test", "" + test);
+
+                                JSONArray array = jsonObject.getJSONArray("listOrga");
+                                Constants.ORGA = new String[array.length()];
+                                for(int n = 0; n < array.length(); n++)
+                                {
+                                    Constants.ORGA[n] = array.getString(n);
+                                    Log.v("ORga", "Orga de " + login + " : " + Constants.ORGA[n]);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -272,7 +273,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Log.v("onError", "error : " + error);
                 }
             });
-            queue.add(stringRequest);
+            Constants.queue.add(stringRequest);
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            loginProgress.setVisibility(View.VISIBLE);
         }
     }
 

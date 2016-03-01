@@ -40,7 +40,14 @@ public class UserOrganisationListAdapter extends ArrayAdapter<OrganisationModel>
             convertView = mInflater.inflate(R.layout.row_user_organisation, parent, false);
         }
         TextView tvDate = (TextView) convertView.findViewById(R.id.tv_name_orga);
-        tvDate.setText(current.getName());
+        //api get name
+
+
+
+
+
+        //without api
+        //tvDate.setText(current.getName());
 
 
         RelativeLayout fullRow = (RelativeLayout) convertView.findViewById(R.id.full_row);
