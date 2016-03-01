@@ -146,9 +146,14 @@ public class SearchOrganisationFragment extends Fragment {
                     public void onResponse(String response) {
                         Log.v("onResponse", "response : " + response);
                         try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String str = jsonObject.getString("name");
-                            organisations.add(new Organisation(jsonObject.getString("name"), jsonObject.getString("address")));
+                            JSONArray array = new JSONArray(response);
+                            JSONObject obj;
+                            for (int n = 0; n != array.length(); ++n)
+                            {
+                                obj = array.getJSONObject(n);
+                                organisations.add(new Organisation(obj.getString("name"), obj.getString("address")));
+                                Log.v("test search : ", obj.getString("name"));
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
