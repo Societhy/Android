@@ -11,7 +11,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class OrganisationAdministrationActivity extends AppCompatActivity {
-
     @Bind(R.id.tv_organisation_name)
     TextView tvOrganisationName;
     @Bind(R.id.toolbar)
