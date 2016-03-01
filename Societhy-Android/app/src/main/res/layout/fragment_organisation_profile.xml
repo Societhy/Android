@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout_filter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="end">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/iv_orga_profile"
             android:layout_width="wrap_content"
@@ -13,76 +16,66 @@
             android:layout_gravity="left"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/cdprojekt"
-            />
+            android:src="@drawable/cdprojekt" />
 
         <TextView
-            android:id="@+id/tv_orga_profile"
+            android:id="@+id/tv_orga_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="bitedadazdza"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:layout_toRightOf="@+id/iv_orga_profile"
-            android:textColor="@android:color/black"
+            android:layout_alignBottom="@+id/iv_orga_profile"
+            android:layout_alignTop="@+id/iv_orga_profile"
             android:layout_marginLeft="@dimen/default_margin_organisation_profile"
             android:layout_marginRight="37dp"
-            android:layout_alignTop="@+id/iv_orga_profile"
-            android:layout_alignBottom="@+id/iv_orga_profile" />
+            android:layout_toRightOf="@+id/iv_orga_profile"
+            android:text="bitedadazdza"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_Description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_orga_profile"
-            android:text="zjndzejkndzejknfzek"
-            android:textSize="17sp"
             android:layout_alignLeft="@+id/iv_orga_profile"
+            android:layout_alignRight="@+id/tv_orga_name"
             android:layout_alignStart="@+id/iv_orga_profile"
+            android:layout_below="@+id/iv_orga_profile"
             android:layout_marginRight="@dimen/default_margin_organisation_profile"
             android:layout_marginTop="@dimen/default_margin_organisation_profile"
-            android:layout_alignRight="@+id/tv_orga_profile" />
+            android:textSize="17sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1.5"
             android:layout_below="@+id/tv_Description"
             android:layout_marginTop="@dimen/padding_top_lv_user_profile"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1.5">
 
             <ListView
                 android:id="@+id/lv_orga_profile"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.1">
-            </ListView>
+                android:layout_weight="1.1"></ListView>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_organisation_members"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.4"
-                android:paddingTop="10dp">
-            </android.support.v7.widget.RecyclerView>
+                android:paddingTop="10dp"></android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </RelativeLayout>
 
-    <android.support.v4.widget.DrawerLayout
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:id="@+id/drawer_layout_filter"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.design.widget.NavigationView
-            android:id="@+id/nav_view_filter"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:fitsSystemWindows="true" >
-            <include
-                layout="@layout/organisation_projects_drawer">
+        android:fitsSystemWindows="true">
 
-            </include>
-        </android.support.design.widget.NavigationView>
-    </android.support.v4.widget.DrawerLayout>
-</FrameLayout>
+        <include layout="@layout/organisation_projects_drawer">
+
+        </include>
+    </android.support.design.widget.NavigationView>
+</android.support.v4.widget.DrawerLayout>

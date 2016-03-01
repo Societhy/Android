@@ -23,13 +23,11 @@ public class ActivityListAdapter extends ArrayAdapter<UserActivityModel> {
     private static LayoutInflater mInflater = null;
     private static List<UserActivityModel> objs;
     private Context context;
-    private Activity activity;
 
-    public ActivityListAdapter(Context context, int layout, List<UserActivityModel> objects, Activity activity) {
+    public ActivityListAdapter(Context context, int layout, List<UserActivityModel> objects) {
         super(context, layout, objects);
         this.context = context;
         objs = objects;
-        this.activity = activity;
         if (context != null)
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

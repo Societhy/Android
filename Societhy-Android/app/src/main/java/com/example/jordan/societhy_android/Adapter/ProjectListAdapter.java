@@ -2,6 +2,8 @@ package com.example.jordan.societhy_android.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +13,9 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.jordan.societhy_android.Activity.HomeActivity;
 import com.example.jordan.societhy_android.Activity.R;
+import com.example.jordan.societhy_android.Fragments.ProjectProfileFragment;
 import com.example.jordan.societhy_android.Models.ProjectModel;
 
 import java.util.List;
@@ -23,10 +27,10 @@ public class ProjectListAdapter extends ArrayAdapter<ProjectModel> {
     private static LayoutInflater mInflater = null;
     private static List<ProjectModel> objs;
     private Context context;
-    private Activity activity;
+    private FragmentActivity activity;
 //private View view;
 
-    public ProjectListAdapter(Context context, int layout, List<ProjectModel> objects, Activity activity) {
+    public ProjectListAdapter(Context context, int layout, List<ProjectModel> objects) {
         super(context, layout, objects);
         Log.v("in Adapter", "in adapter begin");
         this.context = context;
@@ -50,6 +54,7 @@ public class ProjectListAdapter extends ArrayAdapter<ProjectModel> {
         fullRow.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 //TODO Click sur un projet
+                /*HomeActivity.changeFragment(activity, ProjectProfileFragment.newInstance("", ""));*/
             }
         });
         return convertView;
