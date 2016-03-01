@@ -43,6 +43,7 @@ public class OrganisationListAdapter extends ArrayAdapter<Organisation> {
         if (context != null)
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         Log.v("in Adapter", "in adapter end");
+
     }
 
     @Override
