@@ -6,14 +6,16 @@ package com.example.jordan.societhy_android.Models;
 public class OrganisationModel {
     private String name;
     private String dateC;
+    private String addr;
 
     public OrganisationModel() {
 
     }
 
-    public OrganisationModel(String name, String dateC) {
+    public OrganisationModel(String name, String dateC, String addr) {
         this.name = name;
         this.dateC = dateC;
+        this.addr = addr;
     }
 
     public String getName() {
@@ -31,4 +33,8 @@ public class OrganisationModel {
     public void setDateC(String dateC) {
         this.dateC = dateC;
     }
+
+    public String getAddr() { return this.addr; }
+
+    public void setAddr(String add) { this.addr = addr; }
 }

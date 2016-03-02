@@ -41,7 +41,7 @@ public class VoteListAdapter extends ArrayAdapter<VoteModel> {
             convertView = mInflater.inflate(R.layout.row_project_vote, parent, false);
         }
         TextView tvName = (TextView) convertView.findViewById(R.id.tv_vote_description);
-        tvName.setText(current.getVoteContent());
+        tvName.setText("Name : " + current.getName() + " Description " + current.getDescription() + " Amount : " + current.getAmount());
 
         TextView tvLikes = (TextView) convertView.findViewById(R.id.tv_like_number);
         tvLikes.setText("" + current.getLikes());

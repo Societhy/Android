@@ -34,12 +34,11 @@ public class OrganisationListAdapter extends ArrayAdapter<Organisation> {
     private TextView tvName;
 //private View view;
 
-    public OrganisationListAdapter(Context context, int layout, List<Organisation> objects, FragmentActivity activity) {
+    public OrganisationListAdapter(Context context, int layout, List<Organisation> objects) {
         super(context, layout, objects);
         Log.v("in Adapter", "in adapter begin");
         this.context = context;
         objs = objects;
-        this.activity = activity;
         if (context != null)
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         Log.v("in Adapter", "in adapter end");
@@ -58,13 +57,14 @@ public class OrganisationListAdapter extends ArrayAdapter<Organisation> {
         Log.v("in adapter", "orga name = " + current.getName());
 
         TextView tvNote = (TextView) convertView.findViewById(R.id.tv_news);
-        tvNote.setText(current.getDescription());
+        tvNote.setText(current.getAddr());
 
         RelativeLayout fullRow = (RelativeLayout) convertView.findViewById(R.id.full_row);
         fullRow.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Intent intent = new Intent(context, OrganisationProfileActivity.class);
                 intent.putExtra(Constants.ORGANISATION_NAME, current.getName());
+                Constants.lastKey =  current.getAddr();
                 context.startActivity(intent);
             }
         });

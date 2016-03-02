@@ -106,15 +106,15 @@ public class ProjectProfileFragment extends Fragment {
 
         List<OrganisationModel> svOrga = new ArrayList<OrganisationModel>();
 
-        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
+        svOrga.add(new OrganisationModel("Java", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "aa"));svOrga.add(new OrganisationModel("Java", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "aa"));svOrga.add(new OrganisationModel("Java", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "aa"));svOrga.add(new OrganisationModel("Java", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "aa"));
 
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);

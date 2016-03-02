@@ -5,11 +5,11 @@ package com.example.jordan.societhy_android.Models;
  */
 public class Organisation {
     private String name;
-    private String description;
+    private String addr;
 
-    public Organisation(String name, String description) {
+    public Organisation(String name, String addr) {
         this.name = name;
-        this.description = description;
+        this.addr = addr;
     }
 
     public String getName() {
@@ -20,11 +20,11 @@ public class Organisation {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getAddr() {
+        return addr;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAddr(String description) {
+        this.addr = description;
     }
 }

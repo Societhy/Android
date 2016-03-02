@@ -10,10 +10,15 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.jordan.societhy_android.Adapter.ActivityListAdapter;
 import com.example.jordan.societhy_android.Adapter.ProjectListAdapter;
 import com.example.jordan.societhy_android.Adapter.RecyclerViewAdapter;
@@ -21,6 +26,10 @@ import com.example.jordan.societhy_android.Constants;
 import com.example.jordan.societhy_android.Models.OrganisationModel;
 import com.example.jordan.societhy_android.Models.ProjectModel;
 import com.example.jordan.societhy_android.Models.UserActivityModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +61,8 @@ public class OrganisationProfileActivity extends AppCompatActivity {
     private ActivityListAdapter activityAdapter;
     private RecyclerViewAdapter orgaAdapter;
     private ProjectListAdapter projectAdapter;
+    private List<ProjectModel> projects;
+    private String[] projectKeys;
 
     private String organisationName;
 
@@ -64,8 +75,7 @@ public class OrganisationProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bd = intent.getExtras();
         initViews();
-        if(bd != null)
-        {
+        if (bd != null) {
             organisationName = (String) bd.get(Constants.ORGANISATION_NAME);
             Log.v("orgaName :", "" + organisationName);
             tvOrgaName.setText(organisationName);
@@ -109,24 +119,52 @@ public class OrganisationProfileActivity extends AppCompatActivity {
 
         List<OrganisationModel> svOrga = new ArrayList<OrganisationModel>();
 
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
-        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("Java", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("Java", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "a"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "a"));
 
-        List<ProjectModel> projects = new ArrayList<ProjectModel>();
-        projects.add(new ProjectModel("Uncharted 4"));
-        projects.add(new ProjectModel("Uncharted 5"));
-        projects.add(new ProjectModel("BloodBorne"));
-        projects.add(new ProjectModel("BloodBorne 2"));
+        projects = new ArrayList<ProjectModel>();
+        String url = Constants.API_URL + "orga/";
+        url += Constants.lastKey;
+        Log.v("url : ", "url : " + url);
+// Request a string response from the provided URL.
+        Log.v("AttemptLogin", "before StringRequestQueue instanciation");
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.v("onResponse", "response : " + response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            JSONArray array = jsonObject.getJSONArray("projects");
+                            projectKeys = new String[array.length()];
+                            for (int n = 0; n < array.length(); n++) {
+                                projectKeys[n] = array.getString(n);
+                                Log.v("test", array.getString(n));
+                            }
+                            getProject();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.v("onError", "error : " + error);
+            }
+        });
+        Constants.queue.add(stringRequest);
+
 
         LinearLayoutManager memberlayoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -135,15 +173,50 @@ public class OrganisationProfileActivity extends AppCompatActivity {
 
         orgaAdapter = new RecyclerViewAdapter(svOrga);
         activityAdapter = new ActivityListAdapter(this, R.layout.row_activity, list);
-        projectAdapter = new ProjectListAdapter(this, R.layout.row_organisation_project, projects);
 
         lvOrgaProfile.setAdapter(activityAdapter);
         rvOrganisationMembers.setAdapter(orgaAdapter);
-        lvProjects.setAdapter(projectAdapter);
 
         rvOrganisationMembers.setItemAnimator(new DefaultItemAnimator());
         //tmp.addView(orgaAdapter.getView(0, null, null));
 
         //svOrgaUser.addView(userAdapter.getView(1, null, null));
+    }
+
+    private void getProject() {
+
+        String url;
+        StringRequest stringRequest;
+        url = Constants.API_URL + "project/";
+        String tmp;
+        for (int n = 0; n != projectKeys.length; ++n) {
+            tmp = url + projectKeys[n];
+            stringRequest = new StringRequest(Request.Method.GET, tmp,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.v("onResponse", "response : " + response);
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                String test = jsonObject.getString("name");
+                                projects.add(new ProjectModel(test, jsonObject.getString("address")));
+                                ((BaseAdapter)lvProjects.getAdapter()).notifyDataSetChanged();
+                                Log.v("Name project :", test);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.v("onError", "error : " + error);
+                }
+            });
+            Constants.queue.add(stringRequest);
+        }
+        projectAdapter = new ProjectListAdapter(getBaseContext(), R.layout.row_organisation_project, projects);
+        Log.v("avant", "avant");
+        lvProjects.setAdapter(projectAdapter);
+        Log.v("apr", "apr");
     }
 }

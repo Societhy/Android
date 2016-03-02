@@ -6,12 +6,16 @@ package com.example.jordan.societhy_android.Models;
 public class VoteModel {
     private int likes;
     private int dislikes;
-    private String VoteContent;
+    private String name;
+    private double amount;
+    private String description;
 
-    public VoteModel(int likes, int dislikes, String voteContent) {
+    public VoteModel(int likes, int dislikes, String name, double amount, String description) {
         this.likes = likes;
         this.dislikes = dislikes;
-        VoteContent = voteContent;
+        this.description = description;
+        this.amount = amount;
+        this.description = description;
     }
 
     public int getLikes() {
@@ -30,11 +34,27 @@ public class VoteModel {
         this.dislikes = dislikes;
     }
 
-    public String getVoteContent() {
-        return VoteContent;
+    public String getName() {
+        return name;
     }
 
-    public void setVoteContent(String voteContent) {
-        VoteContent = voteContent;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

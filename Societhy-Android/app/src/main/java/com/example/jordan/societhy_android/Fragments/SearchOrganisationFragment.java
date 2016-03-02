@@ -152,8 +152,11 @@ public class SearchOrganisationFragment extends Fragment {
                             {
                                 obj = array.getJSONObject(n);
                                 organisations.add(new Organisation(obj.getString("name"), obj.getString("address")));
-                                Log.v("test search : ", obj.getString("name"));
+                                Log.v("test search : ", obj.getString("name") + " " + obj.getString("address"));
                             }
+                             adapter = new OrganisationListAdapter(getContext(), R.layout.row_news, organisations);
+
+                             lvOrganisations.setAdapter(adapter);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -165,12 +168,12 @@ public class SearchOrganisationFragment extends Fragment {
                 Log.v("onError", "error : " + error);
             }
         });
+
+        Log.v("toto", "ça rentre dans toto");
+       // adapter = new OrganisationListAdapter(getContext(), R.layout.row_news, organisations, this.getActivity());
+        Log.v("toto", "ça sort de toto");
+       // lvOrganisations.setAdapter(adapter);
         Constants.queue.add(stringRequest);
-
-
-
-        adapter = new OrganisationListAdapter(getContext(), R.layout.row_news, organisations, this.getActivity());
-        lvOrganisations.setAdapter(adapter);
 
     }
 

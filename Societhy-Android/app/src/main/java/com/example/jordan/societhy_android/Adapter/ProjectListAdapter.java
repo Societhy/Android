@@ -58,6 +58,8 @@ public class ProjectListAdapter extends ArrayAdapter<ProjectModel> {
             @Override public void onClick(View v) {
                 Intent intent = new Intent(context, ProjectActivity.class);
                 intent.putExtra(Constants.PROJECT_NAME, current.getName());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Constants.lastKey =  current.getAddr();
                 context.startActivity(intent);
             }
         });

@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jordan.societhy_android.Activity.R;
+import com.example.jordan.societhy_android.Constants;
 import com.example.jordan.societhy_android.Models.OrganisationModel;
 
 import java.util.List;
@@ -54,7 +55,7 @@ public class UserOrganisationListAdapter extends ArrayAdapter<OrganisationModel>
         fullRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Click sur une Orga
+                Constants.lastKey =  current.getAddr();
             }
         });
         return convertView;

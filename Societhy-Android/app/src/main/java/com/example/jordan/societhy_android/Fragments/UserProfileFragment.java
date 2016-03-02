@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -98,7 +99,8 @@ public class UserProfileFragment extends Fragment {
         tvUserProfile.setTextColor(Color.GRAY);
 
         List<UserActivityModel> list = new ArrayList<UserActivityModel>();
-
+        svOrga = new ArrayList<OrganisationModel>();
+        /*
         list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
         list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content vActivity Content Activity Content "));
         list.add(new UserActivityModel("14/02/2016", "Activity Content Activity Content "));
@@ -136,12 +138,10 @@ public class UserProfileFragment extends Fragment {
         svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
         svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
       */
-        svOrga = new ArrayList<OrganisationModel>();
 
         String url = Constants.API_URL + "orga/";
         String tmp;
-
-        for (int n = 0; n < Constants.ORGA.length; n++) {
+        for (int n = 0; n != Constants.ORGA.length; ++n) {
             tmp = url + Constants.ORGA[n];
             // Request a string response from the provided URL.
             StringRequest stringRequest = new StringRequest(Request.Method.GET, tmp,
@@ -152,7 +152,10 @@ public class UserProfileFragment extends Fragment {
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
                                 String name = jsonObject.getString("name");
-                                svOrga.add(new OrganisationModel(name, "12/03/1994"));
+                                String addr = jsonObject.getString("address");
+                                svOrga.add(new OrganisationModel(name, "12/03/1994", addr));
+                                orgaAdapter.notifyDataSetChanged();
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

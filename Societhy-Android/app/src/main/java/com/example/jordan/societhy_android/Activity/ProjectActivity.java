@@ -10,19 +10,29 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.jordan.societhy_android.Adapter.ActivityListAdapter;
 import com.example.jordan.societhy_android.Adapter.RecyclerViewAdapter;
 import com.example.jordan.societhy_android.Adapter.VoteListAdapter;
 import com.example.jordan.societhy_android.Constants;
 import com.example.jordan.societhy_android.Models.OrganisationModel;
+import com.example.jordan.societhy_android.Models.ProjectModel;
 import com.example.jordan.societhy_android.Models.UserActivityModel;
 import com.example.jordan.societhy_android.Models.VoteModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +68,7 @@ public class ProjectActivity extends AppCompatActivity {
     private int VOTE_PAGE_SELECTED = 2;
     private int FOUNDRAISING_PAGE_SELECTED = 3;
     private LayoutInflater inflater;
+    private List<VoteModel> voteList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,18 +111,18 @@ public class ProjectActivity extends AppCompatActivity {
 
         List<OrganisationModel> svOrga = new ArrayList<OrganisationModel>();
 
-        svOrga.add(new OrganisationModel("Jean jaques", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
-        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
-        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
-        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
+        svOrga.add(new OrganisationModel("Jean jaques", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("Java", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("Java", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("Java", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "aa"));
 
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -191,7 +202,9 @@ public class ProjectActivity extends AppCompatActivity {
 
     private void initVotePage() {
         Log.v("in initvotepage", "s");
-        List<VoteModel> voteList = new ArrayList<VoteModel>();
+        voteList = new ArrayList<VoteModel>();
+
+        /*
         voteList.add(new VoteModel(15, 10, "proposition proposition proposition proposition proposition proposition proposition  proposition"));
         voteList.add(new VoteModel(25, 50, "proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition"));
         voteList.add(new VoteModel(15, 700, "proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition"));
@@ -199,6 +212,40 @@ public class ProjectActivity extends AppCompatActivity {
         voteList.add(new VoteModel(15, 10, "proposition proposition proposition proposition proposition "));
         voteList.add(new VoteModel(120, 10, "proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition proposition"));
         voteList.add(new VoteModel(15, 10, "proposition proposition proposition proposition proposition proposition proposition proposition "));
+        */
+
+        String url;
+        StringRequest stringRequest;
+        url = Constants.API_URL + "project/" + Constants.lastKey;
+            stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.v("onResponse", "response : " + response);
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                JSONArray jsonArray = jsonObject.getJSONArray("proposalList");
+                                for (int n = 0; n != jsonArray.length(); ++n)
+                                {
+                                    voteList.add(new VoteModel(jsonArray.getJSONObject(n).getInt("voteFor"),
+                                            jsonArray.getJSONObject(n).getInt("voteAgainst"),
+                                            jsonArray.getJSONObject(n).getString("name"),
+                                            jsonArray.getJSONObject(n).getDouble("amount"),
+                                            jsonArray.getJSONObject(n).getString("description")));
+                                    //int likes, int dislikes, String name, double amount, String description
+                                }
+                                ((BaseAdapter)voteListAdapter).notifyDataSetChanged();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.v("onError", "error : " + error);
+                }
+            });
+            Constants.queue.add(stringRequest);
 
         voteListAdapter = new VoteListAdapter(this, R.layout.row_project_vote, voteList);
         ListView lv = (ListView) flProjectInfo.findViewById(R.id.lv_project_vote);

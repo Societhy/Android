@@ -134,25 +134,26 @@ public class OrganisationProfileFragment extends Fragment {
 
         List<OrganisationModel> svOrga = new ArrayList<OrganisationModel>();
 
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
-        svOrga.add(new OrganisationModel("Java", "12/03/1994"));
-        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994"));
-        svOrga.add(new OrganisationModel("CDProject", "12/03/1994"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("FromSoft", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("Java", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("Java", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("JeanMich", "12/03/1994", "aa"));
+        svOrga.add(new OrganisationModel("CDProject", "12/03/1994", "aa"));
 
         List<ProjectModel> projects = new ArrayList<ProjectModel>();
+        /*
         projects.add(new ProjectModel("Uncharted 4"));
         projects.add(new ProjectModel("Uncharted 5"));
         projects.add(new ProjectModel("BloodBorne"));
         projects.add(new ProjectModel("BloodBorne 2"));
-
+    */
         LinearLayoutManager memberlayoutManager
                 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
 

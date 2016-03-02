@@ -13,4 +13,5 @@ public class Constants {
     public static String[] ORGA = null;
     public static String ORGANISATION_NAME = "organisation_name";
     public static String PROJECT_NAME = "project_name";
+    public static String lastKey = null;
 }
